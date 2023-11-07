@@ -1,22 +1,26 @@
 {
-  "scripts": {
-    "dev": "bun --watch run src/server.ts"
-  },
-  "dependencies": {
-    "@types/cors": "^2.8.16",
-    "@types/express": "^4.17.21",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "helmet": "^7.1.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.7",
-    "@types/supertest": "^2.0.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "eslint": "^8.53.0",
-    "jest": "^29.7.0",
-    "supertest": "^6.3.3"
-  }
+	"name": "whirl-api",
+	"version": "1.0.0",
+	"main": "src/server.ts",
+	"license": "MIT",
+	"scripts": {
+		"dev": "bun --watch run src/server.ts"
+	},
+	"dependencies": {
+		"@types/cors": "^2.8.16",
+		"@types/express": "^4.17.21",
+		"cors": "^2.8.5",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"helmet": "^7.1.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.7",
+		"@types/supertest": "^2.0.15",
+		"@typescript-eslint/eslint-plugin": "^6.10.0",
+		"@typescript-eslint/parser": "^6.10.0",
+		"eslint": "^8.53.0",
+		"jest": "^29.7.0",
+		"supertest": "^6.3.3"
+	}
 }

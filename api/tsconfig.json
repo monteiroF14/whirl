@@ -1,0 +1,37 @@
+{
+	"ts-node": { "esm": true, "require": ["tsconfig-paths/register"] },
+	"compilerOptions": {
+		// base options
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "ES2022",
+		"verbatimModuleSyntax": true,
+		"forceConsistentCasingInFileNames": true,
+		"composite": true,
+		"downlevelIteration": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+
+		// strictness
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		// not transpiling with TS
+		"moduleResolution": "Bundler",
+		"allowImportingTsExtensions": true,
+		"module": "ESNext",
+		"noEmit": true,
+
+		// if code doesn't run in the DOM
+		"lib": ["ESNext"],
+
+		// idk
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": ["src/*"],
+			"@tests/*": ["tests/*"]
+		},
+		"typeRoots": ["./src/types", "./node_modules/@types"]
+	}
+}
