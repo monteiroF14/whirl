@@ -29,8 +29,7 @@
 		// idk
 		"baseUrl": ".",
 		"paths": {
-			"@src/*": ["src/*"],
-			"@tests/*": ["tests/*"]
+			"@src/*": ["src/*"]
 		},
 		"typeRoots": ["./src/types", "./node_modules/@types"]
 	}
