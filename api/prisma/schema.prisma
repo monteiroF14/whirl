@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int      @id @default(autoincrement())
+  name             String
+  email            String   @unique
+  role             UserRole
+  image_url        String   @default("https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699315200&semt=sph")
+  own_quizzes      Quiz?    @relation("UserOwnsQuizzes")
+  followed_quizzes Quiz[]   @relation("UserFollowsQuizzes")
+}
+
+model Quiz {
+  id          Int         @id @default(autoincrement())
+  name        String
+  url         String
+  image_url   String
+  created_at  DateTime
+  visibility  Visibility
+  genre       QuizGenre[]
+  views       Int
+  rating      Float
+  questions   Question?   @relation("QuizOwnsQuestions")
+  created_by  User        @relation("UserOwnsQuizzes", fields: [id], references: [id])
+  followed_by User[]      @relation("UserFollowsQuizzes")
+}
+
+model Question {
+  id             Int          @id @default(autoincrement())
+  options        QuizOption[]
+  correct_option Int
+  quizId         Quiz         @relation("QuizOwnsQuestions", fields: [id], references: [id])
+}
+
+enum Visibility {
+  public
+  private
+}
+
+enum UserRole {
+  APPLICATION_USER
+  SUPER_ADMIN
+}
+
+enum QuizGenre {
+  geography
+  software
+  sport
+  movie
+  anime
+}
+
+enum QuizOption {
+  text
+}
