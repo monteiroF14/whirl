@@ -27,10 +27,7 @@
 		"lib": ["ESNext"],
 
 		// idk
-		"baseUrl": ".",
-		"paths": {
-			"@src/*": ["src/*"]
-		},
+		"baseUrl": "./src",
 		"typeRoots": ["./src/types", "./node_modules/@types"]
 	}
 }
