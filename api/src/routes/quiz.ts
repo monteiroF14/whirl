@@ -3,7 +3,7 @@ import {
 	deleteQuizController,
 	getAllQuizzesController,
 	getQuizByIdController,
-} from "@src/controllers/quiz";
+} from "controllers/quiz";
 
 import { Router } from "express";
 

@@ -1,5 +1,5 @@
-import { database } from "@src/config";
-import { DatabaseError, ValidationError, type CustomError } from "@src/utils/response/errors";
+import { database } from "config";
+import { DatabaseError, ValidationError, type CustomError } from "utils/response/errors";
 
 export async function createQuiz(
 	quiz: unknown,

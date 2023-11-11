@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { createUserService } from "@src/services/user";
+import { createUserService } from "services/user";
 
 export async function createUser(req: Request, res: Response) {
 	const { user } = req.body;

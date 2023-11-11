@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getAllQuizzesService } from "@src/services/quiz";
+import { getAllQuizzesService } from "services/quiz";
 
 export async function getAllQuizzes(req: Request, res: Response) {
 	try {

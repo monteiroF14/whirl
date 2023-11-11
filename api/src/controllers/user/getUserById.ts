@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getUserByIdService } from "@src/services/user";
+import { getUserByIdService } from "services/user";
 
 export async function getUserById(req: Request, res: Response) {
 	const { id } = req.params;

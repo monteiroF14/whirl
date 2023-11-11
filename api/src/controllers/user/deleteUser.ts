@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { deleteUserService } from "@src/services/user";
+import { deleteUserService } from "services/user";
 
 export async function deleteUser(req: Request, res: Response) {
 	const { id } = req.body.user;

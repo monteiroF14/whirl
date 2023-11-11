@@ -1,6 +1,6 @@
-import { ValidationError, DatabaseError, type CustomError } from "@src/utils/response/errors";
+import { ValidationError, DatabaseError, type CustomError } from "utils/response/errors";
 import { type Quiz } from "@prisma/client";
-import { database } from "@src/config";
+import { database } from "config";
 
 export async function getUserOwnQuizzes(
 	id: number

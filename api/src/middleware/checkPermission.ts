@@ -1,5 +1,5 @@
 import type { User } from "@prisma/client";
-import { PERMISSIONS, ROLE_PERMISSIONS } from "@src/config/permissions";
+import { PERMISSIONS, ROLE_PERMISSIONS } from "config/permissions";
 import type { Request, Response, NextFunction } from "express";
 
 export function checkPermission(permissions: PERMISSIONS[]) {

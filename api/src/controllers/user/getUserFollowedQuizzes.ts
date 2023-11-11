@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getUserFollowedQuizzesService } from "@src/services/user";
+import { getUserFollowedQuizzesService } from "services/user";
 
 export async function getUserFollowedQuizzes(req: Request, res: Response) {
 	const { id } = req.body.user;

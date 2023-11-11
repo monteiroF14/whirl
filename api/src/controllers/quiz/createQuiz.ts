@@ -1,5 +1,5 @@
-import { createQuizService } from "@src/services/quiz";
 import type { Request, Response } from "express";
+import { createQuizService } from "services/quiz";
 
 export async function createQuiz(req: Request, res: Response) {
 	const { quiz } = req.body;

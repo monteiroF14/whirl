@@ -1,6 +1,6 @@
 import { type User } from "@prisma/client";
-import { database } from "@src/config";
-import { DatabaseError } from "@src/utils/response/errors";
+import { database } from "config";
+import { DatabaseError } from "utils/response/errors";
 
 export async function getAllUsers(): Promise<User[] | DatabaseError> {
 	try {
