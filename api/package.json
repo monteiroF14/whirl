@@ -4,10 +4,10 @@
 	"main": "src/server.ts",
 	"license": "MIT",
 	"scripts": {
-		"dev": "yarn --watch run src/server.ts",
-		"test": "yarn --watch test",
+		"dev": "tsx watch src/server.ts",
+		"test": "vitest",
 		"lint": "eslint . --fix",
-		"prisma:push": "yarn prisma db push"
+		"prisma:push": "npx prisma db push"
 	},
 	"dependencies": {
 		"@prisma/client": "5.5.2",
@@ -16,7 +16,8 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.3.1",
 		"express": "^4.18.2",
-		"helmet": "^7.1.0"
+		"helmet": "^7.1.0",
+		"tsx": "^4.1.0"
 	},
 	"devDependencies": {
 		"@types/supertest": "^2.0.15",
