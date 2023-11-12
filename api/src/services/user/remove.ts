@@ -1,7 +1,7 @@
 import { database } from "config";
 import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
 
-export async function deleteUser(
+export async function remove(
 	id: number
 ): Promise<void | CustomError<ValidationError | DatabaseError>> {
 	if (id === null || id === undefined) {
@@ -16,9 +16,9 @@ export async function deleteUser(
 		});
 	} catch (err: unknown) {
 		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to delete user: ${err.message}`);
+			throw new DatabaseError(`Failed to remove user: ${err.message}`);
 		} else {
-			throw new DatabaseError("Failed to delete user: Unknown error", "UNKNOWN_ERROR");
+			throw new DatabaseError("Failed to remove user: Unknown error", "UNKNOWN_ERROR");
 		}
 	}
 }

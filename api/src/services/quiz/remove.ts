@@ -1,7 +1,7 @@
 import { database } from "config";
 import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
 
-export async function deleteQuiz(
+export async function remove(
 	id: number
 ): Promise<void | CustomError<ValidationError | DatabaseError>> {
 	if (id === null || id === undefined) {

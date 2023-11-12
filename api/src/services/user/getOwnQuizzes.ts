@@ -2,7 +2,7 @@ import { ValidationError, DatabaseError, type CustomError } from "utils/response
 import { type Quiz } from "@prisma/client";
 import { database } from "config";
 
-export async function getUserOwnQuizzes(
+export async function getOwnQuizzes(
 	id: number
 ): Promise<Quiz[] | CustomError<ValidationError | DatabaseError>> {
 	if (id === null || id === undefined) {
@@ -19,15 +19,27 @@ export async function getUserOwnQuizzes(
 
 		if (user === null) {
 			throw new DatabaseError(
-				`Error while getting user own quizzes: ${user}`,
+				`Error while getting user own quizzes: User not found`,
+				"ERROR_GETTING_USER_OWN_QUIZZES"
+			);
+		}
+
+		if (user.own_quizzes === null) {
+			throw new DatabaseError(
+				`Error while getting user own quizzes: User's quizzes not found`,
 				"ERROR_GETTING_USER_OWN_QUIZZES"
 			);
 		}
 
 		return user.own_quizzes;
 	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to get user own quizzes: ${err.message}`);
+		if (err instanceof DatabaseError) {
+			const databaseError: DatabaseError = err;
+
+			throw new DatabaseError(
+				`Failed to get user own quizzes: ${databaseError.message}`,
+				"DATABASE_ERROR"
+			);
 		} else {
 			throw new DatabaseError("Failed to get user own quizzes: Unknown error", "UNKNOWN_ERROR");
 		}

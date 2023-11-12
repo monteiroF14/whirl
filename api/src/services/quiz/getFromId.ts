@@ -1,26 +1,26 @@
-import { type User } from "@prisma/client";
+import type { Quiz } from "@prisma/client";
 import { database } from "config";
 import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
 
-export async function getUserById(
+export async function getFromId(
 	id: number
-): Promise<User | CustomError<ValidationError | DatabaseError>> {
+): Promise<Quiz | CustomError<ValidationError | DatabaseError>> {
 	if (id === null || id === undefined) {
 		throw new ValidationError("ID is required", "MISSING_ID");
 	}
 
 	try {
-		const user = await database.user.findUnique({
+		const quiz = await database.quiz.findUnique({
 			where: {
 				id,
 			},
 		});
 
-		if (user === null) {
-			throw new DatabaseError(`Error while creating user: ${user}`, "ERROR_CREATING_USER");
+		if (quiz === null) {
+			throw new DatabaseError(`Error while creating quiz: ${quiz}`, "ERROR_CREATING_QUIZ");
 		}
 
-		return user;
+		return quiz;
 	} catch (err: unknown) {
 		if (err instanceof DatabaseError && err.message) {
 			throw new DatabaseError(`Failed to fetch user: ${err.message}`);

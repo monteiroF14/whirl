@@ -1,12 +1,12 @@
 import type { Request, Response } from "express";
-import { createQuizService } from "services/quiz";
+import * as QuizService from "services/quiz";
 
-export async function createQuiz(req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
 	const { quiz } = req.body;
 	const { id: userId } = req.body.user;
 
 	try {
-		const newQuiz = await createQuizService(quiz, userId);
+		const newQuiz = await QuizService.create(quiz, userId);
 		res.status(201).json(newQuiz);
 	} catch (err) {
 		console.error(err);

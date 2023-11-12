@@ -1,7 +1,7 @@
 import { database } from "config";
 import { DatabaseError, ValidationError, type CustomError } from "utils/response/errors";
 
-export async function createQuiz(
+export async function create(
 	quiz: unknown,
 	userId: number
 ): Promise<void | CustomError<ValidationError | DatabaseError>> {

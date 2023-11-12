@@ -2,7 +2,7 @@ import { type Quiz } from "@prisma/client";
 import { database } from "config";
 import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
 
-export async function getUserFollowedQuizzes(
+export async function getFollowedQuizzes(
 	id: number
 ): Promise<Quiz[] | CustomError<ValidationError | DatabaseError>> {
 	if (id === null || id === undefined) {

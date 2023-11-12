@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
-import { deleteQuizService } from "services/quiz";
+import * as QuizService from "services/quiz";
 
-export async function deleteQuiz(req: Request, res: Response) {
+export async function remove(req: Request, res: Response) {
 	const { id } = req.body.quiz;
 
 	try {
-		const quiz = await deleteQuizService(id);
+		const quiz = await QuizService.remove(id);
 		res.status(200).json(quiz);
 	} catch (err) {
 		console.error(err);

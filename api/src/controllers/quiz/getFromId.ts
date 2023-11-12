@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
-import { getQuizByIdService } from "services/quiz";
+import * as QuizService from "services/quiz";
 
-export async function getQuizById(req: Request, res: Response) {
+export async function getFromId(req: Request, res: Response) {
 	const { id } = req.body.quiz;
 
 	try {
-		const quiz = await getQuizByIdService(id);
+		const quiz = await QuizService.getFromId(id);
 		res.status(200).json(quiz);
 	} catch (err) {
 		console.error(err);

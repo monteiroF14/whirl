@@ -2,7 +2,7 @@ import { type User } from "@prisma/client";
 import { database } from "config";
 import { DatabaseError } from "utils/response/errors";
 
-export async function getAllUsers(): Promise<User[] | DatabaseError> {
+export async function getAll(): Promise<User[] | DatabaseError> {
 	try {
 		const users = await database.user.findMany();
 		return users;

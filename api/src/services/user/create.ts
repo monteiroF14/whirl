@@ -2,7 +2,7 @@ import type { User } from "@prisma/client";
 import { database } from "config";
 import { DatabaseError, ValidationError, type CustomError } from "utils/response/errors";
 
-export async function createUser(
+export async function create(
 	user: User
 ): Promise<void | CustomError<ValidationError | DatabaseError>> {
 	if (!user || typeof user !== "object") {

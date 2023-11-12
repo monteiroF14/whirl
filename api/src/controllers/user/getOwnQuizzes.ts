@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
-import { getUserOwnQuizzesService } from "services/user";
+import * as UserService from "services/user";
 
-export async function getUserOwnQuizzes(req: Request, res: Response) {
+export async function getOwnQuizzes(req: Request, res: Response) {
 	const { id } = req.body.user;
 
 	try {
-		const user = await getUserOwnQuizzesService(id);
+		const user = await UserService.getOwnQuizzes(id);
 		res.status(200).json(user);
 	} catch (err) {
 		console.error(err);

@@ -1,9 +1,9 @@
 import type { Request, Response } from "express";
-import { getAllQuizzesService } from "services/quiz";
+import * as QuizService from "services/quiz";
 
-export async function getAllQuizzes(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response) {
 	try {
-		const quizzes = await getAllQuizzesService();
+		const quizzes = await QuizService.getAll();
 		res.status(200).json(quizzes);
 	} catch (err) {
 		console.error(err);

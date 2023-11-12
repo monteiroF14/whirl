@@ -1,9 +1,9 @@
 import type { Request, Response } from "express";
-import { getAllUsersService } from "services/user";
+import * as UserService from "services/user";
 
-export async function getAllUsers(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response) {
 	try {
-		const users = await getAllUsersService();
+		const users = await UserService.getAll();
 		res.status(200).json(users);
 	} catch (err) {
 		console.error(err);
