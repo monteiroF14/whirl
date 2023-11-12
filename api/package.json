@@ -4,10 +4,11 @@
 	"main": "src/server.ts",
 	"license": "MIT",
 	"scripts": {
-		"dev": "tsx watch src/server.ts",
+		"start:dev": "tsx watch src/server.ts",
 		"test": "vitest",
 		"lint": "eslint . --fix",
-		"prisma:push": "npx prisma db push"
+		"build": "tsup src/server.ts",
+		"start": "yarn run build && node dist/server.js"
 	},
 	"dependencies": {
 		"@prisma/client": "5.5.2",
@@ -26,6 +27,7 @@
 		"eslint": "^8.53.0",
 		"prisma": "^5.5.2",
 		"supertest": "^6.3.3",
+		"tsup": "^7.2.0",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6"
 	}
