@@ -16,3 +16,4 @@ jobs:
         with:
           service_id: ${{ secrets.RENDER_SERVICE_ID }} # required
           api_key: ${{ secrets.RENDER_API_KEY }} # required
+          github_token:
