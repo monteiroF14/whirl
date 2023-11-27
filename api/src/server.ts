@@ -16,8 +16,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
-app.listen(PORT, () => {
-	console.log(`server is running`);
-});
+if (require.main === module) {
+	app.listen(PORT, () => {
+		console.log(`🚀 server is running 🚀`);
+	});
+}
 
 export default app;
