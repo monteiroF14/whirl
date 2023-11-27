@@ -11,7 +11,11 @@ export function checkPermission(permissions: Array<PERMISSIONS>) {
 		for (const permission of permissions) {
 			const userHasPermission = ROLE_PERMISSIONS[role].includes(permission);
 
-			return userHasPermission ? next() : res.status(401).json({ error: "Unauthorized" });
+			if (!userHasPermission) {
+				return res.status(401).json({ error: "Unauthorized" });
+			}
 		}
+
+		next();
 	};
 }
