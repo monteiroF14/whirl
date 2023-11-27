@@ -1,4 +1,5 @@
-import type { Quiz, User } from "@prisma/client";
+import type { Quiz } from "../../utils/zod/QuizSchema";
+import type { User } from "../../utils/zod/UserSchema";
 
 declare global {
 	namespace Express {
