@@ -1,6 +1,7 @@
 import { Router, type Request, type Response } from "express";
-import user from "./user";
 import quiz from "./quiz";
+import user from "./user";
+import { errorHandler } from "../middleware/error";
 
 const router = Router();
 
@@ -10,5 +11,7 @@ router.get("/", (req: Request, res: Response) => {
 
 router.use("/users", user);
 router.use("/quizzes", quiz);
+
+router.use(errorHandler);
 
 export default router;

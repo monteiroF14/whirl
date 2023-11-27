@@ -1,14 +1,28 @@
-import type { Request, Response } from "express";
-import * as UserService from "services/user";
+import type { NextFunction, Request, Response } from "express";
+import * as UserService from "../../services/user";
+import { RemoveUserServicePropsSchema } from "../../services/user/remove";
 
-export async function remove(req: Request, res: Response) {
-	const { id } = req.body.user;
+export async function remove(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+	const validation = RemoveUserServicePropsSchema.safeParse({ id });
+
+	if (!validation.success) {
+		res.status(400).json({
+			message: "Validation error",
+			errors: validation.error.errors,
+		});
+		return;
+	}
 
 	try {
-		const user = await UserService.remove(id);
-		res.status(200).json(user);
+		const result = await UserService.remove(validation.data);
+
+		if (result.isSuccess) {
+			res.status(201).json(result.value);
+		} else {
+			res.status(500).json({ message: `Failed to delete user: ${result.error}` });
+		}
 	} catch (err) {
-		console.error(err);
-		res.status(500).json({ message: "Failed to delete user!" });
+		next(err);
 	}
 }

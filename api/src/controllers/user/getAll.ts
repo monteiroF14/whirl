@@ -1,12 +1,16 @@
-import type { Request, Response } from "express";
-import * as UserService from "services/user";
+import type { NextFunction, Request, Response } from "express";
+import * as UserService from "../../services/user";
 
-export async function getAll(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response, next: NextFunction) {
 	try {
-		const users = await UserService.getAll();
-		res.status(200).json(users);
+		const result = await UserService.getAll();
+
+		if (result.isSuccess) {
+			res.status(200).json(result.value);
+		} else {
+			res.status(500).json({ message: `Failed to fetch users: ${result.error}` });
+		}
 	} catch (err) {
-		console.error(err);
-		res.status(500).json({ message: "Failed to fetch users!" });
+		next(err);
 	}
 }

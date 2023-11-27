@@ -1,8 +1,10 @@
-import type { User } from "@prisma/client";
-import { PERMISSIONS, ROLE_PERMISSIONS } from "config/permissions";
+import { PERMISSIONS, ROLE_PERMISSIONS } from "../config/permissions";
 import type { Request, Response, NextFunction } from "express";
+import type { User } from "../utils/zod/UserSchema";
 
-export function checkPermission(permissions: PERMISSIONS[]) {
+// refactor this to ask for user role instead
+// maybe make it work if there is no user?
+export function checkPermission(permissions: Array<PERMISSIONS>) {
 	return (req: Request, res: Response, next: NextFunction) => {
 		const { role } = req.body.user as User;
 
