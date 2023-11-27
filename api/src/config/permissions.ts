@@ -19,7 +19,7 @@ export enum PERMISSIONS {
 	QUIZ_DELETE_OWN = "QUIZ_DELETE_OWN",
 }
 
-export const ROLE_PERMISSIONS: Record<UserRole, PERMISSIONS[]> = {
+export const ROLE_PERMISSIONS: Record<UserRole, Array<PERMISSIONS>> = {
 	SUPER_ADMIN: Object.values(PERMISSIONS),
 	APPLICATION_USER: [
 		PERMISSIONS.QUIZ_FOLLOW_ANY,
