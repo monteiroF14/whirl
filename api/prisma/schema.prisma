@@ -2,16 +2,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator zod {
-  provider                 = "zod-prisma"
-  output                   = "./zod" 
-  relationModel            = true 
-  modelCase                = "PascalCase"
-  modelSuffix              = "Model" 
-  useDecimalJs             = true 
-  prismaJsonNullability    = true 
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -30,14 +20,15 @@ model Quiz {
   id          Int         @id @default(autoincrement())
   name        String
   url         String
-  image_url   String
-  created_at  DateTime
+  image_url   String @default("https://img.freepik.com/vetores-premium/quiz-logo_2728-12.jpg")
+  created_at  DateTime @default(now())
   visibility  Visibility
   genre       QuizGenre[]
-  views       Int
-  rating      Float
-  questions   Question[]   @relation("QuizOwnsQuestions")
-  created_by  User        @relation("UserOwnsQuizzes", fields: [id], references: [id])
+  views       Int @default(0)
+  rating      Float @default(0)
+  questions   Question[]   @relation("QuizOwnsQuestions") 
+  created_by_id Int
+  created_by  User        @relation("UserOwnsQuizzes", fields: [created_by_id], references: [id])
   followed_by User[]      @relation("UserFollowsQuizzes")
 }
 
@@ -45,7 +36,8 @@ model Question {
   id             Int          @id @default(autoincrement())
   options        QuizOption[]
   correct_option Int
-  quizId         Quiz         @relation("QuizOwnsQuestions", fields: [id], references: [id])
+  quizId Int 
+  quiz           Quiz         @relation("QuizOwnsQuestions", fields: [quizId], references: [id])
 }
 
 enum Visibility {
