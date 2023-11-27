@@ -1,24 +1,34 @@
-import { database } from "config";
-import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
+import { z, ZodError } from "zod";
+import { database } from "../../config";
+import { Result } from "../../utils/response/result";
+import type { Quiz } from "@prisma/client";
 
-export async function remove(
-	id: number
-): Promise<void | CustomError<ValidationError | DatabaseError>> {
-	if (id === null || id === undefined) {
-		throw new ValidationError("ID is required", "MISSING_ID");
-	}
+export const RemoveQuizServicePropsSchema = z.object({
+	quizId: z.number(),
+});
+
+type RemoveQuizServiceProps = z.infer<typeof RemoveQuizServicePropsSchema>;
+
+export async function remove({ quizId }: RemoveQuizServiceProps): Promise<Result<Quiz>> {
+	RemoveQuizServicePropsSchema.parse({ quizId });
 
 	try {
-		await database.quiz.delete({
+		const quiz = await database.quiz.delete({
 			where: {
-				id,
+				id: quizId,
 			},
 		});
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to delete quiz: ${err.message}`);
+
+		if (!quiz) {
+			return Result.fail<Quiz>("Failed to delete quiz, i'm not on catch");
+		}
+
+		return Result.ok();
+	} catch (err) {
+		if (err instanceof ZodError) {
+			return Result.fail<Quiz>(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			throw new DatabaseError("Failed to delete quiz: Unknown error", "UNKNOWN_ERROR");
+			return Result.fail<Quiz>(`Failed to remove quiz: ${err}`);
 		}
 	}
 }

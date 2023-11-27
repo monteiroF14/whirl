@@ -1,24 +1,46 @@
-import { describe, expect, it } from "vitest";
+import { vi, describe, afterEach, it, expect } from "vitest";
+import { UserRole } from "@prisma/client";
+import { create } from ".";
+import { database } from "../../config/__mocks__";
 
-describe("create user", () => {
-	it("should create a new user successfully", async () => {
-		const newUser = {
-			name: "bluueem",
-			role: "APPLICATION_USER",
-		};
+vi.mock("../../config");
 
-		//@ts-expect-error user not in right format
-		const newUserService = await createUserService(newUser);
-		expect(newUserService).not.toThrow();
+describe("create function", () => {
+	afterEach(() => {
+		vi.restoreAllMocks();
 	});
 
-	it("should throw a error when the user isn't passed properly", async () => {
+	it("should create a user with valid input", async () => {
 		const newUser = {
-			email: "",
-			password: "",
+			name: "John Doe",
 		};
 
-		//@ts-expect-error should expect error because user is not being passed properly
-		expect(async () => await createUser(newUser)).toThrow();
+		database.user.create.mockResolvedValue({
+			id: 1,
+			name: newUser.name,
+			role: UserRole.APPLICATION_USER,
+			image_url: "https://example.com/image.jpg",
+		});
+
+		const result = await create(newUser);
+
+		expect(result.isSuccess).toBe(true);
+		expect(result.value).toStrictEqual({
+			id: 1,
+			name: newUser.name,
+			role: UserRole.APPLICATION_USER,
+			image_url: "https://example.com/image.jpg",
+		});
+	});
+
+	it("should fail with validation error on invalid input", async () => {
+		// @ts-expect-error not valid input
+		database.user.create.mockResolvedValue({});
+
+		// @ts-expect-error invalid user data
+		const result = await create({});
+
+		expect(result.isFailure).toBe(true);
+		expect(result.error).toContain("Validation error");
 	});
 });

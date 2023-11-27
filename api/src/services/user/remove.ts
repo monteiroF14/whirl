@@ -1,24 +1,34 @@
-import { database } from "config";
-import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
+import { z, ZodError } from "zod";
+import { database } from "../../config";
+import { Result } from "../../utils/response/result";
+import type { User } from "@prisma/client";
 
-export async function remove(
-	id: number
-): Promise<void | CustomError<ValidationError | DatabaseError>> {
-	if (id === null || id === undefined) {
-		throw new ValidationError("ID is required", "MISSING_ID");
-	}
+export const RemoveUserServicePropsSchema = z.object({
+	userId: z.number(),
+});
+
+type RemoveUserServiceProps = z.infer<typeof RemoveUserServicePropsSchema>;
+
+export async function remove({ userId }: RemoveUserServiceProps): Promise<Result<User>> {
+	RemoveUserServicePropsSchema.parse({ userId });
 
 	try {
-		await database.user.delete({
+		const user = await database.user.delete({
 			where: {
-				id,
+				id: userId,
 			},
 		});
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to remove user: ${err.message}`);
+
+		if (!user) {
+			return Result.fail<User>("User doesn't exist");
+		}
+
+		return Result.ok(user);
+	} catch (err) {
+		if (err instanceof ZodError) {
+			return Result.fail<User>(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			throw new DatabaseError("Failed to remove user: Unknown error", "UNKNOWN_ERROR");
+			return Result.fail<User>(`Failed to remove user: ${err}`);
 		}
 	}
 }

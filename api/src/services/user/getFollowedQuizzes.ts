@@ -1,38 +1,40 @@
 import { type Quiz } from "@prisma/client";
-import { database } from "config";
-import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
+import { database } from "../../config";
+import { ZodError, z } from "zod";
+import { Result } from "../../utils/response/result";
 
-export async function getFollowedQuizzes(
-	id: number
-): Promise<Quiz[] | CustomError<ValidationError | DatabaseError>> {
-	if (id === null || id === undefined) {
-		throw new ValidationError("ID is required", "MISSING_ID");
-	}
+export const GetFollowedQuizzesUserServicePropsSchema = z.object({
+	userId: z.number(),
+});
+
+type GetFollowedQuizzesUserServiceProps = z.infer<typeof GetFollowedQuizzesUserServicePropsSchema>;
+
+export async function getFollowedQuizzes({
+	userId,
+}: GetFollowedQuizzesUserServiceProps): Promise<Result<Array<Quiz>>> {
+	GetFollowedQuizzesUserServicePropsSchema.parse({ userId });
 
 	try {
-		const user = await database.user.findUnique({
-			where: { id },
-			include: {
-				followed_quizzes: true,
+		const quizzes = await database.quiz.findMany({
+			where: {
+				followed_by: {
+					some: {
+						id: userId,
+					},
+				},
 			},
 		});
 
-		if (user === null) {
-			throw new DatabaseError(
-				`Error while getting user followed quizzes: ${user}`,
-				"ERROR_GETTING_USER_FOLLOWED_QUIZZES"
-			);
+		if (!quizzes || quizzes === null) {
+			return Result.fail<Array<Quiz>>(`Quizzes not found from user: ${userId}`);
 		}
 
-		return user.followed_quizzes;
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to get user followed quizzes: ${err.message}`);
+		return Result.ok(quizzes);
+	} catch (err) {
+		if (err instanceof ZodError) {
+			return Result.fail<Array<Quiz>>(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			throw new DatabaseError(
-				"Failed to get user followed quizzes: Unknown error",
-				"UNKNOWN_ERROR"
-			);
+			return Result.fail<Array<Quiz>>(`Failed to create user: ${err}`);
 		}
 	}
 }

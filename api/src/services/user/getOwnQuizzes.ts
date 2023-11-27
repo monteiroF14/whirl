@@ -1,47 +1,39 @@
-import { ValidationError, DatabaseError, type CustomError } from "utils/response/errors";
 import { type Quiz } from "@prisma/client";
-import { database } from "config";
+import { database } from "../../config";
+import { ZodError, z } from "zod";
+import { Result } from "../../utils/response/result";
 
-export async function getOwnQuizzes(
-	id: number
-): Promise<Quiz[] | CustomError<ValidationError | DatabaseError>> {
-	if (id === null || id === undefined) {
-		throw new ValidationError("ID is required", "MISSING_ID");
-	}
+export const GetOwnQuizzesUserServicePropsSchema = z.object({
+	userId: z.number(),
+});
+
+type GetOwnQuizzesUserServiceProps = z.infer<typeof GetOwnQuizzesUserServicePropsSchema>;
+
+export async function getOwnQuizzes({
+	userId,
+}: GetOwnQuizzesUserServiceProps): Promise<Result<Array<Quiz>>> {
+	GetOwnQuizzesUserServicePropsSchema.parse({ userId });
 
 	try {
-		const user = await database.user.findUnique({
-			where: { id },
-			include: {
+		const userData = await database.user.findUnique({
+			where: {
+				id: userId,
+			},
+			select: {
 				own_quizzes: true,
 			},
 		});
 
-		if (user === null) {
-			throw new DatabaseError(
-				`Error while getting user own quizzes: User not found`,
-				"ERROR_GETTING_USER_OWN_QUIZZES"
-			);
+		if (!userData?.own_quizzes) {
+			return Result.fail<Array<Quiz>>("User not found or does not own any quizzes");
 		}
 
-		if (user.own_quizzes === null) {
-			throw new DatabaseError(
-				`Error while getting user own quizzes: User's quizzes not found`,
-				"ERROR_GETTING_USER_OWN_QUIZZES"
-			);
-		}
-
-		return user.own_quizzes;
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError) {
-			const databaseError: DatabaseError = err;
-
-			throw new DatabaseError(
-				`Failed to get user own quizzes: ${databaseError.message}`,
-				"DATABASE_ERROR"
-			);
+		return Result.ok(userData.own_quizzes);
+	} catch (err) {
+		if (err instanceof ZodError) {
+			return Result.fail<Array<Quiz>>(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			throw new DatabaseError("Failed to get user own quizzes: Unknown error", "UNKNOWN_ERROR");
+			return Result.fail<Array<Quiz>>(`Failed to get user own quizzes: ${err}`);
 		}
 	}
 }

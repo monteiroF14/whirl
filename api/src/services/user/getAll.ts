@@ -1,12 +1,17 @@
 import { type User } from "@prisma/client";
-import { database } from "config";
-import { DatabaseError } from "utils/response/errors";
+import { database } from "../../config";
+import { Result } from "../../utils/response/result";
 
-export async function getAll(): Promise<User[] | DatabaseError> {
+export async function getAll(): Promise<Result<Array<User>>> {
 	try {
 		const users = await database.user.findMany();
-		return users;
+
+		if (!users) {
+			Result.fail<Array<User>>("Failed to get users");
+		}
+
+		return Result.ok(users);
 	} catch (error) {
-		throw new DatabaseError(`Failed to retrieve users: ${error}`, "DB_ERROR");
+		return Result.fail<Array<User>>(`Failed to retrieve users: ${error}`);
 	}
 }

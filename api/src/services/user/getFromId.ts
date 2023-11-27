@@ -1,31 +1,38 @@
-import { type User } from "@prisma/client";
-import { database } from "config";
-import { type CustomError, ValidationError, DatabaseError } from "utils/response/errors";
+import { z, ZodError } from "zod";
+import { database } from "../../config";
+import { Result } from "../../utils/response/result";
+import type { User } from "@prisma/client";
 
-export async function getFromId(
-	id: number
-): Promise<User | CustomError<ValidationError | DatabaseError>> {
-	if (id === null || id === undefined) {
-		throw new ValidationError("ID is required", "MISSING_ID");
-	}
+export const GetFromIdUserServicePropsSchema = z.object({
+	userId: z.number(),
+});
+
+type GetFromIdUserServiceProps = z.infer<typeof GetFromIdUserServicePropsSchema>;
+
+export async function getFromId({ userId }: GetFromIdUserServiceProps): Promise<Result<User>> {
+	GetFromIdUserServicePropsSchema.parse({ userId });
 
 	try {
 		const user = await database.user.findUnique({
 			where: {
-				id,
+				id: userId,
+			},
+			include: {
+				followed_quizzes: true,
+				own_quizzes: true,
 			},
 		});
 
-		if (user === null) {
-			throw new DatabaseError(`Error while creating user: ${user}`, "ERROR_CREATING_USER");
+		if (!user) {
+			return Result.fail<User>(`User not found for ID: ${userId}`);
 		}
 
-		return user;
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to fetch user: ${err.message}`);
+		return Result.ok(user);
+	} catch (err) {
+		if (err instanceof ZodError) {
+			return Result.fail<User>(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			throw new DatabaseError("Failed to fetch user: Unknown error", "UNKNOWN_ERROR");
+			return Result.fail<User>(`Failed to fetch user: ${err}`);
 		}
 	}
 }

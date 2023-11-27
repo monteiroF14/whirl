@@ -1,23 +1,31 @@
 import type { User } from "@prisma/client";
-import { database } from "config";
-import { DatabaseError, ValidationError, type CustomError } from "utils/response/errors";
+import { ZodError, z } from "zod";
+import { database } from "../../config";
+import { Result } from "../../utils/response/result";
 
-export async function create(
-	user: User
-): Promise<void | CustomError<ValidationError | DatabaseError>> {
-	if (!user || typeof user !== "object") {
-		throw new ValidationError("User is required");
-	}
+export const CreateUserServicePropsSchema = z.object({
+	name: z.string(),
+});
 
+type CreateUserServiceProps = z.infer<typeof CreateUserServicePropsSchema>;
+
+export async function create({ name }: CreateUserServiceProps): Promise<Result<User>> {
 	try {
-		await database.user.create({
+		CreateUserServicePropsSchema.parse({ name });
+
+		const newUser = await database.user.create({
 			data: {
-				...user,
+				name,
 			},
 		});
-	} catch (err: unknown) {
-		if (err instanceof DatabaseError && err.message) {
-			throw new DatabaseError(`Failed to create user: ${err.message}`);
+
+		return Result.ok(newUser);
+	} catch (err) {
+		console.error(err);
+		if (err instanceof ZodError) {
+			return Result.fail<User>(`Validation error: ${err.errors[0]?.message}`);
+		} else {
+			return Result.fail<User>(`Failed to create user: ${err}`);
 		}
 	}
 }
