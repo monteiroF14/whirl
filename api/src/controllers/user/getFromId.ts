@@ -4,7 +4,7 @@ import { GetFromIdUserServicePropsSchema } from "../../services/user/getFromId";
 
 export async function getFromId(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
-	const validation = GetFromIdUserServicePropsSchema.safeParse({ id });
+	const validation = GetFromIdUserServicePropsSchema.safeParse({ userId: +id! });
 
 	if (!validation.success) {
 		res.status(400).json({
