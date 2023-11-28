@@ -1,14 +1,17 @@
 import { PERMISSIONS, ROLE_PERMISSIONS } from "../config/permissions";
-import type { Request, Response, NextFunction } from "express";
+import type { Response, NextFunction, Request } from "express";
 import type { User } from "../utils/zod/UserSchema";
 
 // refactor this to ask for user role instead
-// maybe make it work if there is no user?
-export function checkPermission(permissions: Array<PERMISSIONS>) {
+export function authorize(requiredPermissions: Array<PERMISSIONS>) {
 	return (req: Request, res: Response, next: NextFunction) => {
+		if (!req?.body?.user) {
+			return res.status(400).json({ error: "No user provided" });
+		}
+
 		const { role } = req.body.user as User;
 
-		for (const permission of permissions) {
+		for (const permission of requiredPermissions) {
 			const userHasPermission = ROLE_PERMISSIONS[role].includes(permission);
 
 			if (!userHasPermission) {
