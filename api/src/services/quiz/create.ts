@@ -3,35 +3,27 @@ import { database } from "../../config";
 import { Result } from "../../utils/response/result";
 import type { Quiz } from "@prisma/client";
 import { QuizSchema } from "../../utils/zod/QuizSchema";
-import { QuestionSchema } from "../../utils/zod/QuestionSchema";
 
 export const CreateQuizServicePropsSchema = z.object({
 	quiz: QuizSchema,
-	questions: z.array(QuestionSchema),
 	userId: z.number(),
 });
 
 type CreateQuizServiceProps = z.infer<typeof CreateQuizServicePropsSchema>;
 
-export async function create({
-	quiz,
-	userId,
-	questions,
-}: CreateQuizServiceProps): Promise<Result<Quiz>> {
-	CreateQuizServicePropsSchema.parse({ quiz, userId, questions });
+export async function create({ quiz, userId }: CreateQuizServiceProps): Promise<Result<Quiz>> {
+	CreateQuizServicePropsSchema.parse({ quiz, userId });
 
 	try {
 		const newQuiz = await database.quiz.create({
 			data: {
 				...quiz,
-				created_by: {
-					connect: { id: userId },
-				},
+				created_by_id: userId,
 				followed_by: {
 					create: [],
 				},
 				questions: {
-					create: [],
+					create: quiz.questions,
 				},
 			},
 			include: {
