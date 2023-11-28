@@ -4,29 +4,29 @@ import { ZodError, z } from "zod";
 import { Result } from "../../utils/response/result";
 
 export const GetFollowedQuizzesUserServicePropsSchema = z.object({
-	userId: z.number(),
+	id: z.number(),
 });
 
 type GetFollowedQuizzesUserServiceProps = z.infer<typeof GetFollowedQuizzesUserServicePropsSchema>;
 
 export async function getFollowedQuizzes({
-	userId,
+	id,
 }: GetFollowedQuizzesUserServiceProps): Promise<Result<Array<Quiz>>> {
-	GetFollowedQuizzesUserServicePropsSchema.parse({ userId });
+	GetFollowedQuizzesUserServicePropsSchema.parse({ id });
 
 	try {
 		const quizzes = await database.quiz.findMany({
 			where: {
 				followed_by: {
 					some: {
-						id: userId,
+						id,
 					},
 				},
 			},
 		});
 
 		if (!quizzes || quizzes === null) {
-			return Result.fail<Array<Quiz>>(`Quizzes not found from user: ${userId}`);
+			return Result.fail<Array<Quiz>>(`Quizzes not found from user: ${id}`);
 		}
 
 		return Result.ok(quizzes);

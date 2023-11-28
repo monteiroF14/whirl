@@ -4,7 +4,7 @@ import { GetFollowedQuizzesUserServicePropsSchema } from "../../services/user/ge
 
 export async function getFollowedQuizzes(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
-	const validation = GetFollowedQuizzesUserServicePropsSchema.safeParse({ id });
+	const validation = GetFollowedQuizzesUserServicePropsSchema.safeParse({ id: +id! });
 
 	if (!validation.success) {
 		res.status(400).json({
@@ -18,7 +18,7 @@ export async function getFollowedQuizzes(req: Request, res: Response, next: Next
 		const result = await UserService.getFollowedQuizzes(validation.data);
 
 		if (result.isSuccess) {
-			res.status(201).json(result.value);
+			res.status(200).json(result.value);
 		} else {
 			res.status(500).json({ message: `Failed to get followed quizzes: ${result.error}` });
 		}

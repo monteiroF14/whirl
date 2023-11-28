@@ -4,3 +4,6 @@ export { getFromId } from "./getFromId";
 export { remove } from "./remove";
 export { getOwnQuizzes } from "./getOwnQuizzes";
 export { getFollowedQuizzes } from "./getFollowedQuizzes";
+export { addToFollowedQuizzes } from "./addToFollowedQuizzes";
+export { addToOwnQuizzes } from "./addToOwnQuizzes";
+export { removeFromFollowedQuizzes } from "./removeFromFollowedQuizzes";

@@ -1,18 +1,24 @@
 import { Router } from "express";
 import * as UserController from "./../controllers/user";
 import { PERMISSIONS } from "../config/permissions";
-import { checkPermission } from "../middleware/checkPermission";
+import { authorize } from "../middleware/authorize";
 
 const router = Router();
 
 router
 	.route("/")
-	.get(checkPermission([PERMISSIONS.USERS_READ]), UserController.getAll)
+	.get(authorize([PERMISSIONS.USERS_READ]), UserController.getAll)
 	.post(UserController.create);
 
 router
 	.route("/:id")
-	.get(checkPermission([PERMISSIONS.USERS_READ]), UserController.getFromId)
-	.delete(checkPermission([PERMISSIONS.USERS_DELETE]), UserController.remove);
+	.get(authorize([PERMISSIONS.USERS_READ]), UserController.getFromId)
+	.delete(authorize([PERMISSIONS.USERS_DELETE]), UserController.remove);
+
+router
+	.route("/:id/following")
+	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), UserController.getFollowedQuizzes)
+	.put(authorize([PERMISSIONS.QUIZ_FOLLOW_ANY]), UserController.addToFollowedQuizzes)
+	.delete(authorize([PERMISSIONS.QUIZ_FOLLOW_ANY]), UserController.removeFromFollowedQuizzes);
 
 export default router;
