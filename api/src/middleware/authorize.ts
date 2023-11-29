@@ -15,7 +15,7 @@ export function authorize(requiredPermissions: Array<PERMISSIONS>) {
 			const userHasPermission = ROLE_PERMISSIONS[role].includes(permission);
 
 			if (!userHasPermission) {
-				return res.status(401).json({ error: "Unauthorized" });
+				return res.status(401).json({ error: "Unauthorized: no permission" });
 			}
 		}
 
