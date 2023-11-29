@@ -1,4 +1,4 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import * as QuizController from "./../controllers/quiz";
 import { authorize } from "../middleware/authorize";
 import { PERMISSIONS } from "../config/permissions";
@@ -20,10 +20,10 @@ router
 	.get(authorize([PERMISSIONS.QUIZ_EDIT_OWN]), QuizController.getVisibility)
 	.put(authorize([PERMISSIONS.QUIZ_EDIT_OWN]), QuizController.toggleVisibility);
 
-router.route("/:id/views").get((req: Request, res: Response) => {
-	console.log("here");
-	res.sendStatus(200);
-});
+router
+	.route("/:id/views")
+	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getViews)
+	.put(authorize([PERMISSIONS.QUIZ_INCREMENT_ANY]), QuizController.incrementViews);
 
 // router.route(":/id/rating");
 // router.route(":/id/followers");
