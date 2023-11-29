@@ -1,5 +1,4 @@
 {
-	"ts-node": { "esm": true, "require": ["tsconfig-paths/register"] },
 	"compilerOptions": {
 		// base options
 		"esModuleInterop": true,
@@ -17,9 +16,10 @@
 		// strictness
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
+
 		// not transpiling with TS
-		"moduleResolution": "Bundler",
 		"allowImportingTsExtensions": true,
+		"moduleResolution": "Bundler",
 		"module": "ESNext",
 		"noEmit": true,
 
