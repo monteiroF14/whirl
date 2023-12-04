@@ -15,3 +15,7 @@ export { incrementViews } from "./views/incrementViews";
 //  rating
 export { getRating } from "./rating/getRating";
 export { updateRating } from "./rating/updateRating";
+
+// followers
+export { getFollowers } from "./followers/getFollowers";
+export { addFollower } from "./followers/addFollower";

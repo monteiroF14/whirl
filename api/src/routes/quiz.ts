@@ -30,7 +30,11 @@ router
 	.get(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.getRating)
 	.put(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.updateRating);
 
-// router.route(":/id/followers");
+router
+	.route("/:id/followers")
+	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getFollowers)
+	.put(authorize([PERMISSIONS.QUIZ_FOLLOW_ANY]), QuizController.addFollower);
+
 // router.route(":/id/questions");
 
 export default router;
