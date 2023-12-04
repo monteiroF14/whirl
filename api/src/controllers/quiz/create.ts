@@ -3,7 +3,9 @@ import * as QuizService from "../../services/quiz";
 import { CreateQuizServicePropsSchema } from "../../services/quiz/create";
 
 export async function create(req: Request, res: Response, next: NextFunction) {
-	const { quiz, userId } = req.body;
+	const { quiz, user } = req.body;
+	// refactor this:
+	const userId = +user.id!;
 	const validation = CreateQuizServicePropsSchema.safeParse({ quiz, userId });
 
 	if (!validation.success) {
@@ -15,13 +17,13 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 	}
 
 	try {
-		const result = await QuizService.create(validation.data);
+		const createQuizResult = await QuizService.create(validation.data);
+		await QuizService.attachToUser({
+			quizId: createQuizResult.value.id,
+			userId,
+		});
 
-		if (result.isSuccess) {
-			res.status(201).json(result.value);
-		} else {
-			res.status(500).json({ message: `Failed to create user: ${result.error}` });
-		}
+		res.sendStatus(201).json(createQuizResult.value);
 	} catch (err) {
 		next(err);
 	}

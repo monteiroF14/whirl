@@ -10,3 +10,7 @@ export { toggleVisibility } from "./visibility/toggleVisibility";
 // views
 export { getViews } from "./views/getViews";
 export { incrementViews } from "./views/incrementViews";
+
+// rating
+export { getRating } from "./rating/getRating";
+export { updateRating } from "./rating/updateRating";

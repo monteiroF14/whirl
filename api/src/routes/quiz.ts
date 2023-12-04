@@ -25,7 +25,11 @@ router
 	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getViews)
 	.put(authorize([PERMISSIONS.QUIZ_INCREMENT_ANY]), QuizController.incrementViews);
 
-// router.route(":/id/rating");
+router
+	.route("/:id/rating")
+	.get(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.getRating)
+	.put(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.updateRating);
+
 // router.route(":/id/followers");
 // router.route(":/id/questions");
 

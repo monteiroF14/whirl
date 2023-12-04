@@ -8,35 +8,50 @@ datasource db {
 }
 
 model User {
-  id               Int      @id @default(autoincrement()) @map("id")
+  id               Int          @id @default(autoincrement()) @map("id")
   name             String
-  role             UserRole @default(APPLICATION_USER)
-  image_url        String   @default("https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699315200&semt=sph")
-  own_quizzes      Quiz[]    @relation("UserOwnsQuizzes")
-  followed_quizzes Quiz[]   @relation("UserFollowsQuizzes")
+  role             UserRole     @default(APPLICATION_USER)
+  image_url        String       @default("https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699315200&semt=sph")
+  own_quizzes      Quiz[]       @relation("UserOwnsQuizzes")
+  followed_quizzes Quiz[]       @relation("UserFollowsQuizzes")
+  user_rating      UserRating[]
 }
 
 model Quiz {
-  id          Int         @id @default(autoincrement())
-  name        String
-  url         String
-  image_url   String @default("https://img.freepik.com/vetores-premium/quiz-logo_2728-12.jpg")
-  created_at  DateTime @default(now())
-  visibility  Visibility
-  genre       QuizGenre[]
-  views       Int @default(0)
-  rating      Float @default(0)
-  questions   Question[]   @relation("QuizOwnsQuestions") 
+  id            Int          @id @default(autoincrement())
+  name          String
+  url           String
+  image_url     String       @default("https://img.freepik.com/vetores-premium/quiz-logo_2728-12.jpg")
+  created_at    DateTime     @default(now())
+  visibility    Visibility
+  genre         QuizGenre[]
+  views         Int          @default(0)
+  rating        Float        @default(0)
+  questions     Question[]   @relation("QuizOwnsQuestions")
   created_by_id Int
-  created_by  User        @relation("UserOwnsQuizzes", fields: [created_by_id], references: [id])
-  followed_by User[]      @relation("UserFollowsQuizzes")
+  created_by    User         @relation("UserOwnsQuizzes", fields: [created_by_id], references: [id])
+  followed_by   User[]       @relation("UserFollowsQuizzes")
+  user_rating   UserRating[]
+}
+
+model UserRating {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  userId    Int
+  quizId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+
+  @@unique([userId, quizId])
 }
 
 model Question {
   id             Int          @id @default(autoincrement())
   options        QuizOption[]
   correct_option Int
-  quizId Int 
+  quizId         Int
   quiz           Quiz         @relation("QuizOwnsQuestions", fields: [quizId], references: [id])
 }
 

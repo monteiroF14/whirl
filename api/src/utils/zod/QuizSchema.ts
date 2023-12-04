@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { QuestionSchema } from "./QuestionSchema";
-import { UserSchema } from "./UserSchema";
+import { UserRatingSchema, UserSchema } from "./UserSchema";
 
 export const QuizVisibilitySchema = z.enum(["public", "private"]);
 export type QuizVisibility = z.infer<typeof QuizVisibilitySchema>;
@@ -21,6 +21,7 @@ export const QuizSchema = z.object({
 	questions: z.array(QuestionSchema).default([]),
 	created_by_id: z.number().optional(),
 	followed_by: z.array(UserSchema).default([]),
+	user_rating: z.array(UserRatingSchema).default([]),
 });
 
 export type Quiz = z.infer<typeof QuizSchema>;
