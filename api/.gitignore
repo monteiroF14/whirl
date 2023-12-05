@@ -135,3 +135,5 @@ dist
 yarn.lock
 
 prisma/migrations
+
+_quiz.json
