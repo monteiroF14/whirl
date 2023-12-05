@@ -18,7 +18,7 @@ export async function remove(req: Request, res: Response, next: NextFunction) {
 		const result = await GenreController.remove(validation.data);
 
 		if (result.isSuccess) {
-			res.status(201).json(result.value);
+			res.status(204).json(result.value);
 		} else {
 			res.status(500).json({ message: `Failed to delete genre: ${result.error}` });
 		}
