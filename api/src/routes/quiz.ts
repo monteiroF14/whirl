@@ -1,40 +1,38 @@
 import { Router } from "express";
 import * as QuizController from "./../controllers/quiz";
-import { authorize } from "../middleware/authorize";
-import { PERMISSIONS } from "../config/permissions";
+import { ROLE } from "../config/permissions";
+import { require } from "../middleware/require";
 
 const router = Router();
 
 router
 	.route("/")
-	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getAll)
-	.post(authorize([PERMISSIONS.QUIZ_CREATE_OWN]), QuizController.create);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getAll)
+	.post(require(ROLE.APPLICATION_USER), QuizController.create);
 
 router
 	.route("/:id")
-	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getFromId)
-	.delete(authorize([PERMISSIONS.QUIZ_DELETE_OWN]), QuizController.remove);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getFromId)
+	.delete(require(ROLE.APPLICATION_USER), QuizController.remove);
 
 router
 	.route("/:id/visibility")
-	.get(authorize([PERMISSIONS.QUIZ_EDIT_OWN]), QuizController.getVisibility)
-	.put(authorize([PERMISSIONS.QUIZ_EDIT_OWN]), QuizController.toggleVisibility);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getVisibility)
+	.put(require(ROLE.APPLICATION_USER), QuizController.toggleVisibility);
 
 router
 	.route("/:id/views")
-	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getViews)
-	.put(authorize([PERMISSIONS.QUIZ_INCREMENT_ANY]), QuizController.incrementViews);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getViews)
+	.put(require(ROLE.APPLICATION_USER), QuizController.incrementViews);
 
 router
 	.route("/:id/rating")
-	.get(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.getRating)
-	.put(authorize([PERMISSIONS.QUIZ_RATE_ANY]), QuizController.updateRating);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getRating)
+	.put(require(ROLE.APPLICATION_USER), QuizController.updateRating);
 
 router
 	.route("/:id/followers")
-	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), QuizController.getFollowers)
-	.put(authorize([PERMISSIONS.QUIZ_FOLLOW_ANY]), QuizController.addFollower);
-
-// router.route(":/id/questions");
+	.get(require(ROLE.APPLICATION_USER), QuizController.getFollowers)
+	.put(require(ROLE.APPLICATION_USER), QuizController.addFollower);
 
 export default router;

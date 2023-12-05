@@ -1,19 +1,18 @@
 import { Router } from "express";
+import { ROLE } from "../config/permissions";
+import { require } from "../middleware/require";
 import * as GenreController from "../controllers/genre";
-import { authorize } from "../middleware/authorize";
-import { PERMISSIONS } from "../config/permissions";
 
 const router = Router();
 
 router
 	.route("/")
-	.post(authorize([PERMISSIONS.QUIZ_CREATE_GENRE]), GenreController.create)
-	.get(authorize([PERMISSIONS.QUIZ_READ_ALL]), GenreController.getAll);
+	.post(require(ROLE.SUPER_ADMIN), GenreController.create)
+	.get(require(ROLE.APPLICATION_USER), GenreController.getAll);
 
 router
 	.route("/:id")
-	// .get(authorize([PERMISSIONS.]))
-	.put(authorize([PERMISSIONS.QUIZ_CREATE_GENRE]), GenreController.updateName)
-	.delete(authorize([PERMISSIONS.QUIZ_DELETE_GENRE]), GenreController.remove);
+	.put(require(ROLE.SUPER_ADMIN), GenreController.updateName)
+	.delete(require(ROLE.SUPER_ADMIN), GenreController.remove);
 
 export default router;
