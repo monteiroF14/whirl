@@ -6,6 +6,12 @@ declare namespace NodeJS {
 		// base api url
 		BASE_URL: string;
 
+		// google oauth
+		CLIENT_ID: string;
+		CLIENT_SECRET: string;
+
+		REDIRECT_URL: string;
+
 		// quiz questions
 		QUIZ_MAX_QUESTIONS: number;
 		QUIZ_MIN_QUESTIONS: number;

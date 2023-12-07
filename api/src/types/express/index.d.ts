@@ -6,6 +6,7 @@ import type { User } from "../../utils/zod/UserSchema";
 declare global {
 	namespace Express {
 		export interface Request {
+			access_token?: string;
 			body: {
 				user?: User;
 				quiz?: Quiz;
