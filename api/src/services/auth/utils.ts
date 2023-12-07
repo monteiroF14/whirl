@@ -1,6 +1,8 @@
 import { google } from "googleapis";
 
-const redirectUri = process.env.REDIRECT_URL.split(",");
+const redirectUri = process.env.REDIRECT_URL.includes(",")
+	? process.env.REDIRECT_URL.split(",")
+	: process.env.REDIRECT_URL;
 
 export const googleConfig = {
 	clientId: process.env.CLIENT_ID,
