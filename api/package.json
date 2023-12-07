@@ -8,7 +8,10 @@
 		"build": "tsup src/server.ts",
 		"test": "vitest",
 		"start:dev": "tsx watch src/server.ts",
-		"start": "yarn run build && node dist/server.js"
+		"start": "yarn run build && node dist/server.js",
+		"prisma:studio": "yarn prisma studio",
+		"prisma:migrate": "yarn prisma migrate dev",
+		"prisma:migrate:deploy": "yarn prisma migrate deploy"
 	},
 	"dependencies": {
 		"@prisma/client": "5.5.2",
