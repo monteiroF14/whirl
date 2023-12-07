@@ -4,18 +4,18 @@ import { Result } from "../../utils/response/result";
 import type { User } from "@prisma/client";
 
 export const GetFromIdUserServicePropsSchema = z.object({
-	userId: z.number(),
+	id: z.number(),
 });
 
 type GetFromIdUserServiceProps = z.infer<typeof GetFromIdUserServicePropsSchema>;
 
-export async function getFromId({ userId }: GetFromIdUserServiceProps): Promise<Result<User>> {
-	GetFromIdUserServicePropsSchema.parse({ userId });
+export async function getFromId({ id }: GetFromIdUserServiceProps): Promise<Result<User>> {
+	GetFromIdUserServicePropsSchema.parse({ id });
 
 	try {
 		const user = await database.user.findUnique({
 			where: {
-				id: userId,
+				id,
 			},
 			include: {
 				followed_quizzes: true,
@@ -24,7 +24,7 @@ export async function getFromId({ userId }: GetFromIdUserServiceProps): Promise<
 		});
 
 		if (!user) {
-			return Result.fail<User>(`User not found for ID: ${userId}`);
+			return Result.fail<User>(`User not found for ID: ${id}`);
 		}
 
 		return Result.ok(user);

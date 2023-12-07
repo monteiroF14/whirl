@@ -18,7 +18,7 @@ export async function getFollowers({ id }: GetFollowersQuizServiceProps): Promis
 				id,
 			},
 			select: {
-				followed_by: true,
+				followers: true,
 			},
 		});
 

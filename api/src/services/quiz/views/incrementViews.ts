@@ -36,7 +36,7 @@ export async function incrementViews({ id }: IncreaseViewsQuizServiceProps): Pro
 				views: newViews,
 			},
 			include: {
-				followed_by: true,
+				followers: true,
 				questions: true,
 			},
 		});

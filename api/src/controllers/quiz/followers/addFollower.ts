@@ -3,7 +3,6 @@ import * as QuizService from "../../../services/quiz";
 import type { User } from "../../../utils/zod/UserSchema";
 import { AddFollowerServicePropsSchema } from "../../../services/quiz/followers/addFollower";
 
-// TODO: add a new user and try to follow a quiz ASAP
 export async function addFollower(req: Request, res: Response, next: NextFunction) {
 	const { id: quizId } = req.params;
 	const { id: userId } = req.body.user as User;

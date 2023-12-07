@@ -4,7 +4,7 @@ import { CreateQuizServicePropsSchema } from "../../services/quiz/create";
 
 export async function create(req: Request, res: Response, next: NextFunction) {
 	const { quiz, user } = req.body;
-	// refactor this:
+	// TODO: refactor this:
 	const userId = +user.id!;
 	const validation = CreateQuizServicePropsSchema.safeParse({ quiz, userId });
 
@@ -19,7 +19,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 	try {
 		const createQuizResult = await QuizService.create(validation.data);
 		await QuizService.attachToUser({
-			quizId: createQuizResult.value.id,
+			quizId: createQuizResult.value.id!,
 			userId,
 		});
 

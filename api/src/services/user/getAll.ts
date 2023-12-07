@@ -4,7 +4,12 @@ import { Result } from "../../utils/response/result";
 
 export async function getAll(): Promise<Result<Array<User>>> {
 	try {
-		const users = await database.user.findMany();
+		const users = await database.user.findMany({
+			include: {
+				followed_quizzes: true,
+				own_quizzes: true,
+			},
+		});
 
 		if (!users) {
 			Result.fail<Array<User>>("Failed to get users");

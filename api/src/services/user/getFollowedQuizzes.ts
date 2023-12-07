@@ -17,7 +17,7 @@ export async function getFollowedQuizzes({
 	try {
 		const quizzes = await database.quiz.findMany({
 			where: {
-				followed_by: {
+				followers: {
 					some: {
 						id,
 					},

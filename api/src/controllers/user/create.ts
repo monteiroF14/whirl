@@ -1,9 +1,10 @@
 import type { NextFunction, Request, Response } from "express";
 import { CreateUserServicePropsSchema } from "./../../services/user/create";
 import * as UserService from "../../services/user";
+import type { User } from "../../utils/zod/UserSchema";
 
 export async function create(req: Request, res: Response, next: NextFunction) {
-	const { name } = req.body;
+	const { name } = req.body.user as User;
 	const validation = CreateUserServicePropsSchema.safeParse({ name });
 
 	if (!validation.success) {

@@ -55,6 +55,7 @@ export async function addToFollowedQuizzes({
 				name: true,
 				own_quizzes: true,
 				role: true,
+				refresh_token: true,
 			},
 		});
 

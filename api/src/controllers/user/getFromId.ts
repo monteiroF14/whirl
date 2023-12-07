@@ -4,7 +4,7 @@ import { GetFromIdUserServicePropsSchema } from "../../services/user/getFromId";
 
 export async function getFromId(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
-	const validation = GetFromIdUserServicePropsSchema.safeParse({ userId: +id! });
+	const validation = GetFromIdUserServicePropsSchema.safeParse({ id: +id! });
 
 	if (!validation.success) {
 		res.status(400).json({
@@ -18,7 +18,7 @@ export async function getFromId(req: Request, res: Response, next: NextFunction)
 		const result = await UserService.getFromId(validation.data);
 
 		if (result.isSuccess) {
-			res.status(201).json(result.value);
+			res.status(200).json(result.value);
 		} else {
 			res.status(500).json({ message: `Failed to fetch user: ${result.error}` });
 		}

@@ -4,29 +4,31 @@ import { Result } from "../../utils/response/result";
 import type { Quiz } from "../../utils/zod/QuizSchema";
 
 export const GetFromIdQuizServicePropsSchema = z.object({
-	quizId: z.number(),
+	id: z.number(),
 });
 
 type GetFromIdQuizServiceProps = z.infer<typeof GetFromIdQuizServicePropsSchema>;
 
-export async function getFromId({ quizId }: GetFromIdQuizServiceProps): Promise<Result<Quiz>> {
-	GetFromIdQuizServicePropsSchema.parse({ quizId });
+export async function getFromId({ id }: GetFromIdQuizServiceProps): Promise<Result<Quiz>> {
+	GetFromIdQuizServicePropsSchema.parse({ id });
 
 	try {
 		const quiz = await database.quiz.findUnique({
 			where: {
-				id: quizId,
+				id,
 			},
 			include: {
-				followed_by: true,
+				followers: true,
 				questions: true,
 			},
 		});
 
 		if (!quiz) {
-			return Result.fail(`User not found for ID: ${quizId}`);
+			return Result.fail(`User not found for ID: ${id}`);
 		}
 
+		// @ts-expect-error no idea
+		// TODO: make this work
 		return Result.ok(quiz);
 	} catch (err) {
 		if (err instanceof ZodError) {

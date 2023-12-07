@@ -38,7 +38,7 @@ export async function toggleVisibility({
 				visibility: newVisibility,
 			},
 			include: {
-				followed_by: true,
+				followers: true,
 				questions: true,
 			},
 		});
