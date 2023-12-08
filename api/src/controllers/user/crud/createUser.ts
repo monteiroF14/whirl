@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
-import { CreateUserServicePropsSchema } from "./../../services/user/create";
-import * as UserService from "../../services/user";
-import type { User } from "../../utils/zod/UserSchema";
+import { CreateUserServicePropsSchema } from "../../../services/user/crud/createUser";
+import * as UserService from "../../../services/user";
+import type { User } from "../../../utils/zod/UserSchema";
 
-export async function create(req: Request, res: Response, next: NextFunction) {
+export async function createUser(req: Request, res: Response, next: NextFunction) {
 	const { name } = req.body.user as User;
 	const validation = CreateUserServicePropsSchema.safeParse({ name });
 
@@ -16,13 +16,13 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 	}
 
 	try {
-		const result = await UserService.create(validation.data);
+		const result = await UserService.createUser(validation.data);
 
-		if (result.isSuccess) {
-			res.status(201).json(result.value);
-		} else {
+		if (result.isFailure) {
 			res.status(500).json({ message: `Failed to create user: ${result.error}` });
 		}
+
+		res.status(201).json(result.value);
 	} catch (err) {
 		next(err);
 	}

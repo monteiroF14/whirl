@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { database } from "../../config/__mocks__";
-import { getOwnQuizzes } from ".";
-import { QuizVisibilitySchema, QuizGenreSchema } from "../../utils/zod/QuizSchema";
-import { UserRoleSchema } from "../../utils/zod/UserSchema";
+import { database } from "../../../config/__mocks__";
+import { getOwnQuizzes } from "..";
+import { QuizVisibilitySchema, QuizGenreSchema } from "../../../utils/zod/QuizSchema";
+import { UserRoleSchema } from "../../../utils/zod/UserSchema";
 
 vi.mock("../../config");
 

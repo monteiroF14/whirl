@@ -1,7 +1,7 @@
-import type { User } from "@prisma/client";
 import { ZodError, z } from "zod";
-import { database } from "../../config";
-import { Result } from "../../utils/response/result";
+import { database } from "../../../config";
+import { Result } from "../../../utils/response/result";
+import type { User } from "../../../utils/zod/UserSchema";
 
 export const CreateUserServicePropsSchema = z.object({
 	name: z.string(),
@@ -9,13 +9,26 @@ export const CreateUserServicePropsSchema = z.object({
 
 type CreateUserServiceProps = z.infer<typeof CreateUserServicePropsSchema>;
 
-export async function create({ name }: CreateUserServiceProps): Promise<Result<User>> {
+export async function createUser({ name }: CreateUserServiceProps): Promise<Result<User>> {
 	try {
 		CreateUserServicePropsSchema.parse({ name });
 
 		const newUser = await database.user.create({
 			data: {
 				name,
+			},
+			include: {
+				followed_quizzes: {
+					select: {
+						id: true,
+					},
+				},
+				own_quizzes: {
+					select: {
+						id: true,
+					},
+				},
+				user_rating: true,
 			},
 		});
 
