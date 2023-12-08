@@ -1,20 +1,27 @@
-export { create } from "./create";
-export { getAll } from "./getAll";
-export { getFromId } from "./getFromId";
-export { remove } from "./remove";
+// Quiz CRUD Operations
+export { createQuiz } from "./crud/createQuiz";
+export { getAllQuizzes } from "./crud/getAllQuizzes";
+export { getQuizFromId } from "./crud/getQuizFromId";
+export { removeQuiz } from "./crud/removeQuiz";
 
-// visibility
-export { getVisibility } from "./visibility/getVisibility";
-export { toggleVisibility } from "./visibility/toggleVisibility";
+// Visibility Operations
+export { getQuizVisibility } from "./visibility/getQuizVisibility";
+export { toggleQuizVisibility } from "./visibility/toggleQuizVisibility";
 
-// views
-export { getViews } from "./views/getViews";
-export { incrementViews } from "./views/incrementViews";
+// Views Operations
+export { getQuizViews } from "./views/getQuizViews";
+export { incrementQuizViews } from "./views/incrementQuizViews";
 
-// rating
-export { getRating } from "./rating/getRating";
-export { updateRating } from "./rating/updateRating";
+// Rating Operations
+export { getQuizRating } from "./rating/getQuizRating";
+export { updateQuizRating } from "./rating/updateQuizRating";
 
-// followers
-export { getFollowers } from "./followers/getFollowers";
-export { addFollower } from "./followers/addFollower";
+// Followers Operations
+export { getQuizFollowers } from "./followers/getQuizFollowers";
+
+// Genres Operations
+export { addGenreToQuiz } from "./genres/addGenreToQuiz";
+export { removeGenreFromQuiz } from "./genres/removeGenreFromQuiz";
+
+// Image Operations
+export { updateQuizImage } from "./image/updateQuizImage";

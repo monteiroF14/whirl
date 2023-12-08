@@ -7,32 +7,35 @@ const router = Router();
 
 router
 	.route("/")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getAll)
-	.post(require(ROLE.APPLICATION_USER), QuizController.create);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getAllQuizzes)
+	.post(require(ROLE.APPLICATION_USER), QuizController.createQuiz);
 
 router
 	.route("/:id")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getFromId)
-	.delete(require(ROLE.APPLICATION_USER), QuizController.remove);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getQuizFromId)
+	.delete(require(ROLE.APPLICATION_USER), QuizController.removeQuiz);
 
 router
 	.route("/:id/visibility")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getVisibility)
-	.put(require(ROLE.APPLICATION_USER), QuizController.toggleVisibility);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getQuizVisibility)
+	.put(require(ROLE.APPLICATION_USER), QuizController.toggleQuizVisibility);
 
 router
 	.route("/:id/views")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getViews)
-	.put(require(ROLE.APPLICATION_USER), QuizController.incrementViews);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getQuizViews)
+	.put(require(ROLE.APPLICATION_USER), QuizController.incrementQuizViews);
 
 router
 	.route("/:id/rating")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getRating)
-	.put(require(ROLE.APPLICATION_USER), QuizController.updateRating);
+	.get(require(ROLE.APPLICATION_USER), QuizController.getQuizRating)
+	.put(require(ROLE.APPLICATION_USER), QuizController.updateQuizRating);
+
+router.route("/:id/followers").get(require(ROLE.APPLICATION_USER), QuizController.getQuizFollowers);
+
+router.route("/:id/genres").post(require(ROLE.APPLICATION_USER), QuizController.addGenreToQuiz);
 
 router
-	.route("/:id/followers")
-	.get(require(ROLE.APPLICATION_USER), QuizController.getFollowers)
-	.put(require(ROLE.APPLICATION_USER), QuizController.addFollower);
+	.route("/:id/genres/:genreId")
+	.delete(require(ROLE.APPLICATION_USER), QuizController.removeGenreFromQuiz);
 
 export default router;
