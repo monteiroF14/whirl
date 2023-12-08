@@ -1,7 +1,6 @@
 import { ZodError, z } from "zod";
 import { database } from "../../../config";
 import { Result } from "../../../utils/response/result";
-import type { User } from "../../../utils/zod/UserSchema";
 
 export const AddToUserFollowedQuizzesServicePropsSchema = z.object({
 	userId: z.number(),
@@ -15,54 +14,61 @@ type AddToUserFollowedQuizzesServiceProps = z.infer<
 export async function addToUserFollowedQuizzes({
 	userId,
 	quizId,
-}: AddToUserFollowedQuizzesServiceProps): Promise<Result<User>> {
+}: AddToUserFollowedQuizzesServiceProps): Promise<Result<void>> {
 	try {
 		AddToUserFollowedQuizzesServicePropsSchema.parse({ userId, quizId });
 
-		const existingRecord = await database.user.findUnique({
-			where: {
-				id: userId,
-			},
-			include: {
-				followed_quizzes: true,
-			},
+		const result = await database.$transaction(async (tx) => {
+			// Add the quiz to the user's followed quizzes
+			const updatedUser = await tx.user.update({
+				where: {
+					id: userId,
+				},
+				data: {
+					followed_quizzes: {
+						connect: [{ id: quizId }],
+					},
+				},
+				include: {
+					followed_quizzes: true,
+					own_quizzes: true,
+					user_rating: true,
+				},
+			});
+
+			// Add the user as a follower to the quiz
+			const updatedQuiz = await tx.quiz.update({
+				where: {
+					id: quizId,
+				},
+				data: {
+					followers: {
+						connect: [{ id: userId }],
+					},
+				},
+				include: {
+					followers: true,
+					questions: true,
+					user_rating: true,
+					genres: true,
+				},
+			});
+
+			return { user: updatedUser, quiz: updatedQuiz };
 		});
 
-		if (!existingRecord) {
-			return Result.fail(`Failed to get data for user with id: ${userId}`);
+		if (!result) {
+			return Result.fail("Failed to follow quiz}");
 		}
 
-		const updatedRecord = await database.user.update({
-			where: {
-				id: userId,
-			},
-			data: {
-				followed_quizzes: {
-					connect: [{ id: quizId }],
-				},
-			},
-			include: {
-				followed_quizzes: {
-					select: {
-						id: true,
-					},
-				},
-				own_quizzes: {
-					select: {
-						id: true,
-					},
-				},
-				user_rating: true,
-			},
-		});
-
-		return Result.ok(updatedRecord);
+		// ? should return the updated data here?
+		return Result.ok();
 	} catch (err) {
 		console.error(err);
 		if (err instanceof ZodError) {
-			return Result.fail<User>(`Validation error: ${err.errors[0]?.message}`);
+			return Result.fail(`Validation error: ${err.errors[0]?.message}`);
 		} else {
-			return Result.fail<User>(`Failed to follow quiz: ${err}`);
+			return Result.fail(`Failed to follow quiz: ${err}`);
 		}
 	}
 }

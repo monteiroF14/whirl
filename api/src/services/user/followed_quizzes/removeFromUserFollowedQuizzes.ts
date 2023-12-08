@@ -1,7 +1,6 @@
 import { z, ZodError } from "zod";
 import { database } from "../../../config";
 import { Result } from "../../../utils/response/result";
-import type { User } from "../../../utils/zod/UserSchema";
 
 export const RemoveFromUserFollowedQuizzesServicePropsSchema = z.object({
 	userId: z.number(),
@@ -15,7 +14,7 @@ type RemoveFromUserFollowedQuizzesServiceProps = z.infer<
 export async function removeFromUserFollowedQuizzes({
 	userId,
 	quizId,
-}: RemoveFromUserFollowedQuizzesServiceProps): Promise<Result<User>> {
+}: RemoveFromUserFollowedQuizzesServiceProps): Promise<Result<void>> {
 	try {
 		RemoveFromUserFollowedQuizzesServicePropsSchema.parse({ userId, quizId });
 
