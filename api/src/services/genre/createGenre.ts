@@ -3,13 +3,15 @@ import { Result } from "../../utils/response/result";
 import { database } from "../../config";
 import type { Genre } from "../../utils/zod/GenreSchema";
 
-export const AddGenrePropsSchema = z.object({
+export const CreateGenreServicePropsSchema = z.object({
 	name: z.string(),
 });
 
-type AddGenreProps = z.infer<typeof AddGenrePropsSchema>;
+type CreateGenreServiceProps = z.infer<typeof CreateGenreServicePropsSchema>;
 
-export async function create({ name }: AddGenreProps): Promise<Result<Genre>> {
+export async function createGenre({ name }: CreateGenreServiceProps): Promise<Result<Genre>> {
+	CreateGenreServicePropsSchema.parse({ name });
+
 	try {
 		const newGenre = await database.genre.create({
 			data: {

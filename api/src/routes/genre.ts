@@ -7,12 +7,12 @@ const router = Router();
 
 router
 	.route("/")
-	.post(require(ROLE.SUPER_ADMIN), GenreController.create)
-	.get(require(ROLE.APPLICATION_USER), GenreController.getAll);
+	.post(require(ROLE.SUPER_ADMIN), GenreController.createGenre)
+	.get(require(ROLE.APPLICATION_USER), GenreController.getAllGenres);
 
 router
 	.route("/:id")
-	.put(require(ROLE.SUPER_ADMIN), GenreController.updateName)
-	.delete(require(ROLE.SUPER_ADMIN), GenreController.remove);
+	.put(require(ROLE.SUPER_ADMIN), GenreController.updateGenreName)
+	.delete(require(ROLE.SUPER_ADMIN), GenreController.removeGenre);
 
 export default router;

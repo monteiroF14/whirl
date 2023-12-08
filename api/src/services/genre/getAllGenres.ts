@@ -2,7 +2,7 @@ import { database } from "../../config";
 import { Result } from "../../utils/response/result";
 import type { Genre } from "../../utils/zod/GenreSchema";
 
-export async function getAll(): Promise<Result<Array<Genre>>> {
+export async function getAllGenres(): Promise<Result<Array<Genre>>> {
 	try {
 		const allGenres = await database.genre.findMany();
 

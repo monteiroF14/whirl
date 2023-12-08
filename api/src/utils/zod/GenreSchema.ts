@@ -6,4 +6,5 @@ export const GenreSchema = z.lazy(() =>
 		name: z.string(),
 	})
 );
+
 export type Genre = z.infer<typeof GenreSchema>;

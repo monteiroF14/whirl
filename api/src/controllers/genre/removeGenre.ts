@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import * as GenreController from "../../services/genre";
-import { RemoveGenrePropsSchema } from "../../services/genre/remove";
+import { RemoveGenrePropsSchema } from "../../services/genre/removeGenre";
 
-export async function remove(req: Request, res: Response, next: NextFunction) {
+export async function removeGenre(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
 	const validation = RemoveGenrePropsSchema.safeParse({ id: +id! });
 
@@ -15,13 +15,13 @@ export async function remove(req: Request, res: Response, next: NextFunction) {
 	}
 
 	try {
-		const result = await GenreController.remove(validation.data);
+		const result = await GenreController.removeGenre(validation.data);
 
-		if (result.isSuccess) {
-			res.status(204).json(result.value);
-		} else {
+		if (result.isFailure) {
 			res.status(500).json({ message: `Failed to delete genre: ${result.error}` });
 		}
+
+		res.status(204).json(result.value);
 	} catch (err) {
 		next(err);
 	}

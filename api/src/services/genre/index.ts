@@ -1,4 +1,7 @@
-export { create } from "./create";
-export { getAll } from "./getAll";
-export { remove } from "./remove";
-export { updateName } from "./updateName";
+// Genre CRUD operations
+export { createGenre } from "./createGenre";
+export { getAllGenres } from "./getAllGenres";
+export { removeGenre } from "./removeGenre";
+
+// Genre's image
+export { updateGenreName } from "./updateGenreName";
