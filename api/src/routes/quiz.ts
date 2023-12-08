@@ -38,4 +38,6 @@ router
 	.route("/:id/genres/:genreId")
 	.delete(require(ROLE.APPLICATION_USER), QuizController.removeGenreFromQuiz);
 
+router.route("/:id/image").put(require(ROLE.APPLICATION_USER), QuizController.updateQuizImage);
+
 export default router;
