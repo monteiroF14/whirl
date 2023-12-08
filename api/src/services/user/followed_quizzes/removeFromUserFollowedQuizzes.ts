@@ -56,7 +56,11 @@ export async function removeFromUserFollowedQuizzes({
 			},
 		});
 
-		return Result.ok(updatedRecord);
+		if (!updatedRecord) {
+			return Result.fail("Failed to unfollow quiz:");
+		}
+
+		return Result.ok();
 	} catch (err) {
 		console.error(err);
 		if (err instanceof ZodError) {
