@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import * as UserService from "../../../services/user";
-import { RemoveFromUserFollowedQuizzesServicePropsSchema } from "../../../services/user/followed_quizzes/removeFromUserFollowedQuizzes";
+import * as UserService from "services/user";
+import { RemoveFromUserFollowedQuizzesServicePropsSchema } from "services/user/followed_quizzes/removeFromUserFollowedQuizzes";
 
 export async function removeFromUserFollowedQuizzes(
 	req: Request,

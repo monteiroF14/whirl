@@ -1,7 +1,7 @@
-import { database } from "../../../config";
+import { database } from "config";
 import { ZodError, z } from "zod";
-import { Result } from "../../../utils/response/result";
-import type { UserFollowedQuizzes } from "../../../utils/zod/UserSchema";
+import { Result } from "utils/response/result";
+import type { UserFollowedQuizzes } from "utils/zod/UserSchema";
 
 export const GetUserFollowedQuizzesServicePropsSchema = z.object({
 	userId: z.number(),

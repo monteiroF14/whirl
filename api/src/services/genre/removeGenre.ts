@@ -1,7 +1,7 @@
 import { z, ZodError } from "zod";
-import { database } from "../../config";
-import { Result } from "../../utils/response/result";
-import type { Genre } from "../../utils/zod/GenreSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { Genre } from "utils/zod/GenreSchema";
 
 export const RemoveGenrePropsSchema = z.object({
 	id: z.number(),

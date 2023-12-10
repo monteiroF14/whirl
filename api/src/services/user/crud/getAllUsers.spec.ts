@@ -1,9 +1,9 @@
 import { vi, describe, it, expect } from "vitest";
-import { database } from "../../config/__mocks__";
+import { database } from "config/__mocks__";
 import { UserRole } from "@prisma/client";
 import { getAll } from ".";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("getAll function", () => {
 	// Test case for a successful database query

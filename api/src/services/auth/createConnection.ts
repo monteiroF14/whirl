@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { googleConfig } from "./utils";
+import { googleConfig } from "services/auth/utils";
 
 export function createConnection() {
 	return new google.auth.OAuth2(

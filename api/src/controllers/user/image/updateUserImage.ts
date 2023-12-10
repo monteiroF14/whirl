@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-import { UpdateUserImageServicePropsSchema } from "../../../services/user/image/updateUserImage";
-import type { User } from "../../../utils/zod/UserSchema";
-import * as UserService from "../../../services/user";
+import { UpdateUserImageServicePropsSchema } from "services/user/image/updateUserImage";
+import type { User } from "utils/zod/UserSchema";
+import * as UserService from "services/user";
 
 export async function updateUserImage(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;

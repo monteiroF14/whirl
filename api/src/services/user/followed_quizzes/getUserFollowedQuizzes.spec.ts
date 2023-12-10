@@ -1,9 +1,9 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
-import { database } from "../../config/__mocks__";
+import { database } from "config/__mocks__";
 import { type Quiz, Visibility, QuizGenre } from "@prisma/client";
 import { getFollowedQuizzes } from ".";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("getFollowedQuizzes", () => {
 	beforeEach(() => {

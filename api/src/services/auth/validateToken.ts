@@ -1,6 +1,6 @@
 import { google } from "googleapis";
-import { googleConfig } from "./utils";
-import { Result } from "../../utils/response/result";
+import { googleConfig } from "services/auth/utils";
+import { Result } from "utils/response/result";
 
 export async function validateToken({ token }: { token: string }): Promise<Result<boolean>> {
 	const client = new google.auth.OAuth2(googleConfig.clientId);

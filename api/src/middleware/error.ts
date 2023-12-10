@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
-import { Result } from "../utils/response/result";
+import { Result } from "utils/response/result";
 
 interface CustomError {
 	message: string;

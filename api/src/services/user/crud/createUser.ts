@@ -1,8 +1,8 @@
 import { ZodError, z } from "zod";
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import type { User } from "../../../utils/zod/UserSchema";
-import * as AuthService from "../../auth";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { User } from "utils/zod/UserSchema";
+import * as AuthService from "services/auth";
 
 export const CreateUserServicePropsSchema = z.object({
 	access_token: z.string(),

@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import * as UserService from "../../../services/user";
+import * as UserService from "services/user";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {

@@ -1,8 +1,8 @@
 import { ZodError, z } from "zod";
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import { QuizSchema, type Quiz } from "../../../utils/zod/QuizSchema";
-import { QuestionSchema } from "../../../utils/zod/QuestionSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import { QuizSchema, type Quiz } from "utils/zod/QuizSchema";
+import { QuestionSchema } from "utils/zod/QuestionSchema";
 
 export const CreateQuizServicePropsSchema = z.object({
 	quiz: QuizSchema,

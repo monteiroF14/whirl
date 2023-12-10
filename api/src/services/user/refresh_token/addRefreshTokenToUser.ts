@@ -1,7 +1,7 @@
 import { z, ZodError } from "zod";
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import type { UserRefreshToken } from "../../../utils/zod/UserSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { UserRefreshToken } from "utils/zod/UserSchema";
 
 export const AddRefreshTokenToUserServicePropsSchema = z.object({
 	id: z.number(),

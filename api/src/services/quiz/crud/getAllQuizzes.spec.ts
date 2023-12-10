@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
-import { database } from "../../../config/__mocks__";
+import { database } from "config/__mocks__";
 import { getAll } from "..";
-import { QuizVisibilitySchema, QuizGenreSchema } from "../../../utils/zod/QuizSchema";
+import { QuizVisibilitySchema, QuizGenreSchema } from "utils/zod/QuizSchema";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("getAll function", () => {
 	it("should return all quizzes when the database query is successful", async () => {

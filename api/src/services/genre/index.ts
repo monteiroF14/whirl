@@ -1,7 +1,7 @@
 // Genre CRUD operations
-export { createGenre } from "./createGenre";
-export { getAllGenres } from "./getAllGenres";
-export { removeGenre } from "./removeGenre";
+export { createGenre } from "services/genre/createGenre";
+export { getAllGenres } from "services/genre/getAllGenres";
+export { removeGenre } from "services/genre/removeGenre";
 
 // Genre's image
-export { updateGenreName } from "./updateGenreName";
+export { updateGenreName } from "services/genre/updateGenreName";

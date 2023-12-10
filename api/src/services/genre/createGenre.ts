@@ -1,7 +1,7 @@
 import { ZodError, z } from "zod";
-import { Result } from "../../utils/response/result";
-import { database } from "../../config";
-import type { Genre } from "../../utils/zod/GenreSchema";
+import { Result } from "utils/response/result";
+import { database } from "config";
+import type { Genre } from "utils/zod/GenreSchema";
 
 export const CreateGenreServicePropsSchema = z.object({
 	name: z.string(),

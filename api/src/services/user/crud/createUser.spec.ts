@@ -1,9 +1,9 @@
 import { vi, describe, afterEach, it, expect } from "vitest";
 import { UserRole } from "@prisma/client";
 import { create } from "..";
-import { database } from "../../../config/__mocks__";
+import { database } from "config/__mocks__";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("create function", () => {
 	afterEach(() => {

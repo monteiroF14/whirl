@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { database } from "../../../config/__mocks__";
+import { database } from "config/__mocks__";
 import { remove } from "..";
-import { QuizVisibilitySchema, QuizGenreSchema } from "../../../utils/zod/QuizSchema";
-import { UserRoleSchema } from "../../../utils/zod/UserSchema";
+import { QuizVisibilitySchema, QuizGenreSchema } from "utils/zod/QuizSchema";
+import { UserRoleSchema } from "utils/zod/UserSchema";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("delete quiz by id", () => {
 	beforeEach(() => {

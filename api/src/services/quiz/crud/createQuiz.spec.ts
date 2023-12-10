@@ -1,9 +1,9 @@
 import { vi, describe, it, expect, afterEach, beforeEach } from "vitest";
 import { create } from ".";
-import { database } from "../../config/__mocks__";
-import { QuizGenreSchema, QuizVisibilitySchema, type Quiz } from "../../utils/zod/QuizSchema";
+import { database } from "config/__mocks__";
+import { QuizGenreSchema, QuizVisibilitySchema, type Quiz } from "utils/zod/QuizSchema";
 
-vi.mock("../../config");
+vi.mock("config");
 
 describe("create function", () => {
 	beforeEach(() => {

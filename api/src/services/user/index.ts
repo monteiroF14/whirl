@@ -1,20 +1,20 @@
 // User CRUD operations
-export { getAllUsers } from "./crud/getAllUsers";
-export { createUser } from "./crud/createUser";
-export { getUserFromId } from "./crud/getUserFromId";
-export { getUserByEmail } from "./crud/getUserByEmail";
+export { getAllUsers } from "services/user/crud/getAllUsers";
+export { createUser } from "services/user/crud/createUser";
+export { getUserFromId } from "services/user/crud/getUserFromId";
+export { getUserByEmail } from "services/user/crud/getUserByEmail";
 
 // User's own quizzes
-export { getUserOwnQuizzes } from "./own_quizzes/getUserOwnQuizzes";
+export { getUserOwnQuizzes } from "services/user/own_quizzes/getUserOwnQuizzes";
 
 // User's followed quizzes
-export { getUserFollowedQuizzes } from "./followed_quizzes/getUserFollowedQuizzes";
-export { addToUserFollowedQuizzes } from "./followed_quizzes/addToUserFollowedQuizzes";
-export { removeFromUserFollowedQuizzes } from "./followed_quizzes/removeFromUserFollowedQuizzes";
+export { getUserFollowedQuizzes } from "services/user/followed_quizzes/getUserFollowedQuizzes";
+export { addToUserFollowedQuizzes } from "services/user/followed_quizzes/addToUserFollowedQuizzes";
+export { removeFromUserFollowedQuizzes } from "services/user/followed_quizzes/removeFromUserFollowedQuizzes";
 
 // Update image for User
-export { updateUserImage } from "./image/updateUserImage";
+export { updateUserImage } from "services/user/image/updateUserImage";
 
 // User's refresh token
-export { addRefreshTokenToUser } from "./refresh_token/addRefreshTokenToUser";
-export { getUserRefreshToken } from "./refresh_token/getUserRefreshToken";
+export { addRefreshTokenToUser } from "services/user/refresh_token/addRefreshTokenToUser";
+export { getUserRefreshToken } from "services/user/refresh_token/getUserRefreshToken";

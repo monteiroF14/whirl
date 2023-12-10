@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
-import * as QuizService from "../../../services/quiz";
-import { CreateQuizServicePropsSchema } from "../../../services/quiz/crud/createQuiz";
+import * as QuizService from "services/quiz";
+import { CreateQuizServicePropsSchema } from "services/quiz/crud/createQuiz";
 
 export async function createQuiz(req: Request, res: Response, next: NextFunction) {
 	const { quiz, user } = req.body;

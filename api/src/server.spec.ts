@@ -1,6 +1,6 @@
 import request from "supertest";
 import { describe, expect, it } from "vitest";
-import app from "./server";
+import app from "server";
 
 describe("Express App", () => {
 	it("should respond with a 200 status for a GET request", async () => {

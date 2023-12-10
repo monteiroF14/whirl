@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { ROLE } from "../config/permissions";
-import { require } from "../middleware/require";
-import * as GenreController from "../controllers/genre";
+import { ROLE } from "config/permissions";
+import { require } from "middleware/require";
+import * as GenreController from "controllers/genre";
 
 const router = Router();
 

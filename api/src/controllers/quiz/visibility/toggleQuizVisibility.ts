@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 
-import * as QuizService from "../../../services/quiz";
-import { ToggleQuizVisibilityServicePropsSchema } from "../../../services/quiz/visibility/toggleQuizVisibility";
+import * as QuizService from "services/quiz";
+import { ToggleQuizVisibilityServicePropsSchema } from "services/quiz/visibility/toggleQuizVisibility";
 
 export async function toggleQuizVisibility(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;

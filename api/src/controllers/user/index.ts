@@ -1,15 +1,15 @@
 // User CRUD operations
-export { getAllUsers } from "./crud/getAllUsers";
-export { createUser } from "./crud/createUser";
-export { getUserFromId } from "./crud/getUserFromId";
+export { getAllUsers } from "controllers/user/crud/getAllUsers";
+export { createUser } from "controllers/user/crud/createUser";
+export { getUserFromId } from "controllers/user/crud/getUserFromId";
 
 // User's own quizzes
-export { getUserOwnQuizzes } from "./own_quizzes/getUserOwnQuizzes";
+export { getUserOwnQuizzes } from "controllers/user/own_quizzes/getUserOwnQuizzes";
 
 // User's followed quizzes
-export { getUserFollowedQuizzes } from "./followed_quizzes/getUserFollowedQuizzes";
-export { addToUserFollowedQuizzes } from "./followed_quizzes/addToUserFollowedQuizzes";
-export { removeFromUserFollowedQuizzes } from "./followed_quizzes/removeFromUserFollowedQuizzes";
+export { getUserFollowedQuizzes } from "controllers/user/followed_quizzes/getUserFollowedQuizzes";
+export { addToUserFollowedQuizzes } from "controllers/user/followed_quizzes/addToUserFollowedQuizzes";
+export { removeFromUserFollowedQuizzes } from "controllers/user/followed_quizzes/removeFromUserFollowedQuizzes";
 
 // Update image for User
-export { updateUserImage } from "./image/updateUserImage";
+export { updateUserImage } from "controllers/user/image/updateUserImage";

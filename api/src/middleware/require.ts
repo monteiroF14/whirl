@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import type { ROLE } from "../config/permissions";
+import type { ROLE } from "config/permissions";
 
 export function require(requiredRole: ROLE) {
 	return (req: Request, res: Response, next: NextFunction) => {

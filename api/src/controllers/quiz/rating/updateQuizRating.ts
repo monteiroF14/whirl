@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-import * as QuizService from "../../../services/quiz";
-import type { User } from "../../../utils/zod/UserSchema";
-import { UpdateQuizRatingServicePropsSchema } from "../../../services/quiz/rating/updateQuizRating";
+import * as QuizService from "services/quiz";
+import type { User } from "utils/zod/UserSchema";
+import { UpdateQuizRatingServicePropsSchema } from "services/quiz/rating/updateQuizRating";
 
 export async function updateQuizRating(req: Request, res: Response, next: NextFunction) {
 	const { id: quizId } = req.params;

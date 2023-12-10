@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { QuestionSchema } from "./QuestionSchema";
-import { UserRatingSchema } from "./UserSchema";
-import { GenreSchema } from "./GenreSchema";
+import { QuestionSchema } from "utils/zod/QuestionSchema";
+import { UserRatingSchema } from "utils/zod/UserSchema";
+import { GenreSchema } from "utils/zod/GenreSchema";
 
 export const QuizVisibilitySchema = z.enum(["public", "private"]);
 export type QuizVisibility = z.infer<typeof QuizVisibilitySchema>;

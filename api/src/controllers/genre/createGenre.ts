@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
-import * as GenreService from "../../services/genre";
-import { CreateGenreServicePropsSchema } from "../../services/genre/createGenre";
+import * as GenreService from "services/genre";
+import { CreateGenreServicePropsSchema } from "services/genre/createGenre";
 
 export async function createGenre(req: Request, res: Response, next: NextFunction) {
 	const { genre } = req.body;

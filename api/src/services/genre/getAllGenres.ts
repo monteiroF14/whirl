@@ -1,6 +1,6 @@
-import { database } from "../../config";
-import { Result } from "../../utils/response/result";
-import type { Genre } from "../../utils/zod/GenreSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { Genre } from "utils/zod/GenreSchema";
 
 export async function getAllGenres(): Promise<Result<Array<Genre>>> {
 	try {

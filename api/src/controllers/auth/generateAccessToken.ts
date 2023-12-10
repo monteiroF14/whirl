@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import * as AuthService from "../../services/auth";
-import * as UserService from "../../services/user";
-import type { JwtPayload } from "../../types/JwtPayload";
+import * as AuthService from "services/auth";
+import * as UserService from "services/user";
+import type { JwtPayload } from "types/JwtPayload";
 
 export async function generateAccessToken(req: Request, res: Response) {
 	try {

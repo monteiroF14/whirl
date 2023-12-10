@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import * as QuizService from "../../../services/quiz";
-import { RemoveQuizServicePropsSchema } from "../../../services/quiz/crud/removeQuiz";
+import * as QuizService from "services/quiz";
+import { RemoveQuizServicePropsSchema } from "services/quiz/crud/removeQuiz";
 
 export async function removeQuiz(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
