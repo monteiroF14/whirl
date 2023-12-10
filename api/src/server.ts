@@ -6,6 +6,7 @@ import "dotenv/config";
 import router from "routes";
 import { server } from "config";
 import rateLimit from "express-rate-limit";
+import compression from "compression";
 
 const app: Express = express();
 const PORT = server.port;
@@ -24,6 +25,9 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+app.use(compression());
+
 app.use(router);
 
 if (require.main === module) {
