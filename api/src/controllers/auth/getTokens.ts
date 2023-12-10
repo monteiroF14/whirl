@@ -18,7 +18,9 @@ export async function getTokens(req: Request, res: Response, next: NextFunction)
 			return res.status(400).send("Failed to obtain tokens");
 		}
 
-		return res.status(200).send({ tokens: result.value });
+		req.tokens = result.value;
+
+		next();
 	} catch (err) {
 		next(err);
 	}

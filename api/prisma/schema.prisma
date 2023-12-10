@@ -10,6 +10,7 @@ datasource db {
 model User {
   id               Int          @id @default(autoincrement()) @map("id")
   name             String
+  email String @unique
   role             UserRole     @default(APPLICATION_USER)
   image_url        String       @default("https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699315200&semt=sph")
   refresh_token String @default("")

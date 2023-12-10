@@ -2,6 +2,7 @@
 export { getAllUsers } from "./crud/getAllUsers";
 export { createUser } from "./crud/createUser";
 export { getUserFromId } from "./crud/getUserFromId";
+export { getUserByEmail } from "./crud/getUserByEmail";
 
 // User's own quizzes
 export { getUserOwnQuizzes } from "./own_quizzes/getUserOwnQuizzes";
@@ -13,3 +14,7 @@ export { removeFromUserFollowedQuizzes } from "./followed_quizzes/removeFromUser
 
 // Update image for User
 export { updateUserImage } from "./image/updateUserImage";
+
+// User's refresh token
+export { addRefreshTokenToUser } from "./refresh_token/addRefreshTokenToUser";
+export { getUserRefreshToken } from "./refresh_token/getUserRefreshToken";

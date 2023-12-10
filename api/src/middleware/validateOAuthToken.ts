@@ -1,18 +1,14 @@
 import type { NextFunction, Request, Response } from "express";
 import * as AuthService from "../services/auth";
 
-export async function validateOAuthToken({ token }: { token: string }) {
-	return async (req: Request, res: Response, next: NextFunction) => {
-		const result = await AuthService.validateToken({
-			token,
-		});
+export async function validateOAuthToken(req: Request, res: Response, next: NextFunction) {
+	const result = await AuthService.validateToken({
+		token: req.tokens?.id_token as string,
+	});
 
-		if (result.isFailure) {
-			return res.status(400).send("invalid token");
-		}
+	if (result.isFailure) {
+		return res.status(400).send(result.error);
+	}
 
-		req.access_token = token;
-
-		next();
-	};
+	next();
 }

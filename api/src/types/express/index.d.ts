@@ -1,16 +1,12 @@
-import type { Quiz } from "../../utils/zod/QuizSchema";
+import { Credentials } from "google-auth-library";
 import type { User } from "../../utils/zod/UserSchema";
 
-// not working
-//  go deeper into it
 declare global {
 	namespace Express {
 		export interface Request {
-			access_token?: string;
-			body: {
-				user?: User;
-				quiz?: Quiz;
-			};
+			id_token?: string;
+			tokens?: Credentials;
+			user?: User;
 		}
 	}
 }

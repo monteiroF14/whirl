@@ -24,10 +24,6 @@ The API is built using Node.js and Express, and it follows RESTful conventions.
 
 The base URL for the API is `https://whirl-api.onrender.com`.
 
-## Authentication
-
-The API does not currently require authentication.
-
 ## Users
 
 ### User CRUD operations
@@ -357,7 +353,18 @@ The API does not currently require authentication.
 - Endpoint: `/auth/callback`
 - Method: `GET`
 - Controller Method: `AuthController.getTokens`
-- Description: Callback endpoint for retrieving tokens.
+- Middleware: `validateOAuthToken`
+- Description: Callback endpoint for retrieving tokens. The middleware `validateOAuthToken` is applied to validate the OAuth token before creating a new user.
+
+</details>
+
+<details open>
+  <summary>Generate Access Token</summary>
+
+- Endpoint: `/auth/new-token`
+- Method: `GET`
+- Controller Method: `AuthController.generateAccessToken`
+- Description: Generate a new access token.
 
 </details>
 
