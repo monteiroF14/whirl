@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		// base options
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "ES2022",
+		"verbatimModuleSyntax": true,
+		"forceConsistentCasingInFileNames": true,
+		"composite": true,
+		"downlevelIteration": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+
+		// strictness
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+
+		// not transpiling with TS
+		"allowImportingTsExtensions": true,
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"noEmit": true,
+
+		// if code doesn't run in the DOM
+		"lib": ["ESNext"],
+
+		// idk
+		"typeRoots": ["./src/types", "./node_modules/@types"]
+	}
+}
