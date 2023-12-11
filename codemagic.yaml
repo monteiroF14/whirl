@@ -5,6 +5,7 @@ workflows:
     environment:
       flutter: stable
     scripts:
+      - cd client/
       - flutter pub get
       - flutter build apk --release
 
