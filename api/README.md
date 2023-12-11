@@ -1,22 +1,11 @@
-<!-- add the logo -->
-
 <div align="center" id="short-description-and-logo">
 
   <!-- Logo -->
-  <img src="https://ps.w.org/wp-githuber-md/assets/icon-256x256.png?rev=2194656" width="200px">
+  <img src="assets/logo_1080.png" width="200px">
 
-This is the documentation for the <u>**[whirl API](https://whirl-api.onrender.com)**</u> which provides endpoints for managing users and quizzes.
+This is the documentation for the **[whirl API](https://whirl-api.onrender.com)** which provides endpoints for managing users and quizzes.
 
 The API is built using Node.js and Express, and it follows RESTful conventions.
-
-</div>
-
-<!-- Badges -->
-<div align="center" id="badges">
-
-[![CI](https://img.shields.io/github/actions/workflow/status/JorgeLNJunior/render-deploy/ci.yml?branch=main)](https://github.com/JorgeLNJunior/render-deploy/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/JorgeLNJunior/render-deploy/badge.svg?branch=main)](https://coveralls.io/github/JorgeLNJunior/render-deploy?branch=main)
-[![License](https://img.shields.io/github/license/JorgeLNJunior/render-deploy?color=lgreen)](LICENSE)
 
 </div>
 
