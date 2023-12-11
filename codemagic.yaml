@@ -1,0 +1,18 @@
+workflows:
+  android:
+    name: Build and Deploy Android
+    max_build_duration: 120
+    environment:
+      flutter: stable
+    scripts:
+      - flutter pub get
+      - flutter build apk --release
+
+  ios:
+    name: Build and Deploy iOS
+    max_build_duration: 120
+    environment:
+      flutter: stable
+    scripts:
+      - flutter pub get
+      - flutter build ios --release --no-codesign
