@@ -5,7 +5,7 @@ workflows:
     environment:
       flutter: stable
       android_signing:
-        - keystore_reference
+        - codemagic.keystore
     scripts:
       - cd client/
       - flutter pub get
@@ -16,6 +16,8 @@ workflows:
     max_build_duration: 120
     environment:
       flutter: stable
+      android_signing:
+        - codemagic.keystore
     scripts:
       - cd client/
       - flutter pub get
