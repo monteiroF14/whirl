@@ -8,6 +8,7 @@ workflows:
         - codemagic.keystore
     scripts:
       - cd client/
+      - ./test.sh
       - flutter pub get
       - flutter build apk --release
 
