@@ -1,4 +1,4 @@
-import { Router, type Request, type Response } from "express";
+import express, { Router, type Request, type Response } from "express";
 import quiz from "routes/quiz";
 import user from "routes/user";
 import genre from "routes/genre";
@@ -7,6 +7,8 @@ import { errorHandler } from "middleware/error";
 import { authenticate } from "middleware/authenticate";
 
 const router = Router();
+
+router.use(express.static("public"));
 
 router.get("/", (req: Request, res: Response) => {
 	res.status(200).send("server is running");
