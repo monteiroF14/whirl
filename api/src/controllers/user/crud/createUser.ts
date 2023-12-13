@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-import { CreateUserServicePropsSchema } from "../../../services/user/crud/createUser";
-import * as UserService from "../../../services/user";
-import * as AuthService from "../../../services/auth";
+import { CreateUserServicePropsSchema } from "services/user/crud/createUser";
+import * as UserService from "services/user";
+import * as AuthService from "services/auth";
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
 	const validation = CreateUserServicePropsSchema.safeParse(req.tokens);

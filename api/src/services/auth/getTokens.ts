@@ -1,6 +1,6 @@
 import type { Credentials } from "google-auth-library";
 import { createConnection } from ".";
-import { Result } from "../../utils/response/result";
+import { Result } from "utils/response/result";
 
 export async function getTokens({ code }: { code: string }): Promise<Result<Credentials>> {
 	const auth = createConnection();

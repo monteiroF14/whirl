@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import * as GenreController from "../../services/genre";
-import { RemoveGenrePropsSchema } from "../../services/genre/removeGenre";
+import * as GenreController from "services/genre";
+import { RemoveGenrePropsSchema } from "services/genre/removeGenre";
 
 export async function removeGenre(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;

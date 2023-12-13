@@ -1,6 +1,6 @@
 import { z, ZodError } from "zod";
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
+import { database } from "config";
+import { Result } from "utils/response/result";
 
 export const RemoveQuizServicePropsSchema = z.object({
 	id: z.number(),

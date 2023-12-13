@@ -1,6 +1,6 @@
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import type { Quiz } from "../../../utils/zod/QuizSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { Quiz } from "utils/zod/QuizSchema";
 
 export async function getAllQuizzes(): Promise<Result<Array<Quiz>>> {
 	try {

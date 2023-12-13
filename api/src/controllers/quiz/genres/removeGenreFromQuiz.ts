@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 
-import type { User } from "../../../utils/zod/UserSchema";
-import * as QuizService from "../../../services/quiz";
-import { RemoveGenreFromQuizServicePropsSchema } from "../../../services/quiz/genres/removeGenreFromQuiz";
+import type { User } from "utils/zod/UserSchema";
+import * as QuizService from "services/quiz";
+import { RemoveGenreFromQuizServicePropsSchema } from "services/quiz/genres/removeGenreFromQuiz";
 
 export async function removeGenreFromQuiz(req: Request, res: Response, next: NextFunction) {
 	// TODO refactor this:

@@ -1,27 +1,27 @@
 // Quiz CRUD Operations
-export { createQuiz } from "./crud/createQuiz";
-export { getAllQuizzes } from "./crud/getAllQuizzes";
-export { getQuizFromId } from "./crud/getQuizFromId";
-export { removeQuiz } from "./crud/removeQuiz";
+export { createQuiz } from "services/quiz/crud/createQuiz";
+export { getAllQuizzes } from "services/quiz/crud/getAllQuizzes";
+export { getQuizFromId } from "services/quiz/crud/getQuizFromId";
+export { removeQuiz } from "services/quiz/crud/removeQuiz";
 
 // Visibility Operations
-export { getQuizVisibility } from "./visibility/getQuizVisibility";
-export { toggleQuizVisibility } from "./visibility/toggleQuizVisibility";
+export { getQuizVisibility } from "services/quiz/visibility/getQuizVisibility";
+export { toggleQuizVisibility } from "services/quiz/visibility/toggleQuizVisibility";
 
 // Views Operations
-export { getQuizViews } from "./views/getQuizViews";
-export { incrementQuizViews } from "./views/incrementQuizViews";
+export { getQuizViews } from "services/quiz/views/getQuizViews";
+export { incrementQuizViews } from "services/quiz/views/incrementQuizViews";
 
 // Rating Operations
-export { getQuizRating } from "./rating/getQuizRating";
-export { updateQuizRating } from "./rating/updateQuizRating";
+export { getQuizRating } from "services/quiz/rating/getQuizRating";
+export { updateQuizRating } from "services/quiz/rating/updateQuizRating";
 
 // Followers Operations
-export { getQuizFollowers } from "./followers/getQuizFollowers";
+export { getQuizFollowers } from "services/quiz/followers/getQuizFollowers";
 
 // Genres Operations
-export { addGenreToQuiz } from "./genres/addGenreToQuiz";
-export { removeGenreFromQuiz } from "./genres/removeGenreFromQuiz";
+export { addGenreToQuiz } from "services/quiz/genres/addGenreToQuiz";
+export { removeGenreFromQuiz } from "services/quiz/genres/removeGenreFromQuiz";
 
 // Image Operations
-export { updateQuizImage } from "./image/updateQuizImage";
+export { updateQuizImage } from "services/quiz/image/updateQuizImage";

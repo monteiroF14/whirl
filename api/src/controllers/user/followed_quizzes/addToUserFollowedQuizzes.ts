@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import * as UserService from "../../../services/user";
-import { AddToUserFollowedQuizzesServicePropsSchema } from "../../../services/user/followed_quizzes/addToUserFollowedQuizzes";
+import * as UserService from "services/user";
+import { AddToUserFollowedQuizzesServicePropsSchema } from "services/user/followed_quizzes/addToUserFollowedQuizzes";
 
 export async function addToUserFollowedQuizzes(req: Request, res: Response, next: NextFunction) {
 	const { quizId } = req.body;

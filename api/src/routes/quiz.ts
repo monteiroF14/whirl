@@ -1,7 +1,7 @@
 import { Router } from "express";
-import * as QuizController from "./../controllers/quiz";
-import { ROLE } from "../config/permissions";
-import { require } from "../middleware/require";
+import * as QuizController from "controllers/quiz";
+import { ROLE } from "config/permissions";
+import { require } from "middleware/require";
 
 const router = Router();
 

@@ -1,12 +1,14 @@
-import { Router, type Request, type Response } from "express";
-import quiz from "./quiz";
-import user from "./user";
-import genre from "./genre";
-import auth from "./auth";
-import { errorHandler } from "../middleware/error";
-import { authenticate } from "../middleware/authenticate";
+import express, { Router, type Request, type Response } from "express";
+import quiz from "routes/quiz";
+import user from "routes/user";
+import genre from "routes/genre";
+import auth from "routes/auth";
+import { errorHandler } from "middleware/error";
+import { authenticate } from "middleware/authenticate";
 
 const router = Router();
+
+router.use(express.static("public"));
 
 router.get("/", (req: Request, res: Response) => {
 	res.status(200).send("server is running");

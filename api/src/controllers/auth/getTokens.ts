@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
-import * as AuthService from "./../../services/auth";
+import * as AuthService from "services/auth";
 
 const QueryParamsSchema = z.object({
 	code: z.string(),

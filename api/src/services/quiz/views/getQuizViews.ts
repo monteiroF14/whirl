@@ -1,7 +1,7 @@
 import { z, ZodError } from "zod";
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import type { QuizViews } from "../../../utils/zod/QuizSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { QuizViews } from "utils/zod/QuizSchema";
 
 export const GetQuizViewsServicePropsSchema = z.object({
 	id: z.number(),

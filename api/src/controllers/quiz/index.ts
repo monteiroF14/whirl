@@ -1,27 +1,27 @@
 // Quiz CRUD Operations
-export { createQuiz } from "./crud/createQuiz";
-export { getAllQuizzes } from "./crud/getAllQuizzes";
-export { getQuizFromId } from "./crud/getQuizFromId";
-export { removeQuiz } from "./crud/removeQuiz";
+export { createQuiz } from "controllers/quiz/crud/createQuiz";
+export { getAllQuizzes } from "controllers/quiz/crud/getAllQuizzes";
+export { getQuizFromId } from "controllers/quiz/crud/getQuizFromId";
+export { removeQuiz } from "controllers/quiz/crud/removeQuiz";
 
 // Visibility Operations
-export { getQuizVisibility } from "./visibility/getQuizVisibility";
-export { toggleQuizVisibility } from "./visibility/toggleQuizVisibility";
+export { getQuizVisibility } from "controllers/quiz/visibility/getQuizVisibility";
+export { toggleQuizVisibility } from "controllers/quiz/visibility/toggleQuizVisibility";
 
 // Views Operations
-export { getQuizViews } from "./views/getQuizViews";
-export { incrementQuizViews } from "./views/incrementQuizViews";
+export { getQuizViews } from "controllers/quiz/views/getQuizViews";
+export { incrementQuizViews } from "controllers/quiz/views/incrementQuizViews";
 
 // Rating Operations
-export { getQuizRating } from "./rating/getQuizRating";
-export { updateQuizRating } from "./rating/updateQuizRating";
+export { getQuizRating } from "controllers/quiz/rating/getQuizRating";
+export { updateQuizRating } from "controllers/quiz/rating/updateQuizRating";
 
 // Followers Operations
-export { getQuizFollowers } from "./followers/getQuizFollowers";
+export { getQuizFollowers } from "controllers/quiz/followers/getQuizFollowers";
 
 // Genres Operations
-export { addGenreToQuiz } from "./genres/addGenreToQuiz";
-export { removeGenreFromQuiz } from "./genres/removeGenreFromQuiz";
+export { addGenreToQuiz } from "controllers/quiz/genres/addGenreToQuiz";
+export { removeGenreFromQuiz } from "controllers/quiz/genres/removeGenreFromQuiz";
 
 // Image Operations
-export { updateQuizImage } from "./image/updateQuizImage";
+export { updateQuizImage } from "controllers/quiz/image/updateQuizImage";

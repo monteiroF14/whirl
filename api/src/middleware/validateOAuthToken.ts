@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import * as AuthService from "../services/auth";
+import * as AuthService from "services/auth";
 
 export async function validateOAuthToken(req: Request, res: Response, next: NextFunction) {
 	const result = await AuthService.validateToken({

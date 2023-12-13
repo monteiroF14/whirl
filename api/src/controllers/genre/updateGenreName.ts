@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 
-import * as GenreController from "../../services/genre";
-import { UpdateGenreNamePropsSchema } from "../../services/genre/updateGenreName";
+import * as GenreController from "services/genre";
+import { UpdateGenreNamePropsSchema } from "services/genre/updateGenreName";
 
 export async function updateGenreName(req: Request, res: Response, next: NextFunction) {
 	const { id: genreId } = req.params;

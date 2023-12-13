@@ -1,6 +1,6 @@
-import { database } from "../../../config";
-import { Result } from "../../../utils/response/result";
-import type { User } from "../../../utils/zod/UserSchema";
+import { database } from "config";
+import { Result } from "utils/response/result";
+import type { User } from "utils/zod/UserSchema";
 
 export async function getAllUsers(): Promise<Result<Array<User>>> {
 	try {

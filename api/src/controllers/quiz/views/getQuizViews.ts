@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import * as QuizService from "../../../services/quiz";
-import { GetQuizViewsServicePropsSchema } from "../../../services/quiz/views/getQuizViews";
+import * as QuizService from "services/quiz";
+import { GetQuizViewsServicePropsSchema } from "services/quiz/views/getQuizViews";
 
 export async function getQuizViews(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;

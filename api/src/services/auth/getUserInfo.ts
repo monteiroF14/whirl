@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 
 import { promisify } from "util";
-import { googleConfig } from "./utils";
+import { googleConfig } from "services/auth/utils";
 
 export async function getUserInfo({ access_token }: { access_token: string }) {
 	const client = new google.auth.OAuth2(googleConfig.clientId);

@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
-import * as UserService from "../../../services/user";
-import { GetUserFromIdServicePropsSchema } from "../../../services/user/crud/getUserFromId";
+import * as UserService from "services/user";
+import { GetUserFromIdServicePropsSchema } from "services/user/crud/getUserFromId";
 
 export async function getUserFromId(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;

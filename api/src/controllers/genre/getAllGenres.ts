@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import * as GenreService from "../../services/genre";
+import * as GenreService from "services/genre";
 
 export async function getAllGenres(req: Request, res: Response, next: NextFunction) {
 	try {

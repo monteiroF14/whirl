@@ -1,7 +1,7 @@
 import { Router } from "express";
-import * as UserController from "./../controllers/user";
-import { require } from "../middleware/require";
-import { ROLE } from "../config/permissions";
+import * as UserController from "controllers/user";
+import { require } from "middleware/require";
+import { ROLE } from "config/permissions";
 
 const router = Router();
 
