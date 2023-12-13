@@ -1,19 +1,28 @@
-name: Deploy to Render
+name: Deploy API to Render
 
 on:
   push:
-    branches: ["api"]
-  workflow_dispatch:
+    branches:
+      - master
+
+defaults:
+  run:
+    working-directory: ./api
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions: # Required if github_deployment is set to true.
       deployments: write
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          path: api
+
       - uses: JorgeLNJunior/render-deploy@v1.4.2
         with:
           service_id: ${{ secrets.RENDER_SERVICE_ID }} # required
           api_key: ${{ secrets.RENDER_API_KEY }} # required
-          github_token:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
