@@ -35,6 +35,10 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 						.json({ message: `Failed to get user in db: ${userInDbResult.error}` });
 				}
 
+				res.cookie("refreshToken", userInDbResult.value.refresh_token, {
+					httpOnly: true,
+				});
+
 				req.user = userInDbResult.value;
 
 				return next();
