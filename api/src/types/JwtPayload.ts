@@ -1,4 +1,4 @@
-import type { UserRole } from "utils/zod/UserSchema";
+import type { UserRole } from "utils/zod/user-schema";
 
 export type JwtPayload = {
 	id: number;

@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
 
 import * as QuizService from "services/quiz";
-import { GetQuizVisibilityServicePropsSchema } from "services/quiz/visibility/getQuizVisibility";
+import { GetQuizVisibilityPropsSchema } from "services/quiz/visibility/get-quiz-visibility";
 
 export async function getQuizVisibility(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
-	const validation = GetQuizVisibilityServicePropsSchema.safeParse({ id: +id! });
+	const validation = GetQuizVisibilityPropsSchema.safeParse({ id: +id! });
 
 	if (!validation.success) {
 		res.status(400).json({
