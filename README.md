@@ -2,15 +2,17 @@
     <img alt="whirl" title="whirl" src="api/assets/logo_1080.png" width="200px" />
 </h1>
 
-<p>
+<p align="center">
     <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#-docs">Documentation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-license">License</a>
 </p>
 
-<!-- paste app here: -->
+<p align="center">
+    <img alt="whirl" src="https://imgur.com/a/BAFCEKz" width="100%">
+</p>
 
 ## 🚀 Technologies
 
