@@ -30,7 +30,7 @@ router
 	.get(require(ROLE.APPLICATION_USER), QuizController.getQuizRating)
 	.put(require(ROLE.APPLICATION_USER), QuizController.updateQuizRating);
 
-router.route("/:id/followers").get(require(ROLE.APPLICATION_USER), QuizController.getQuizFollowers);
+// router.route("/:id/followers").get(require(ROLE.APPLICATION_USER), QuizController.getQuizFollowers);
 
 router.route("/:id/genres").post(require(ROLE.APPLICATION_USER), QuizController.addGenreToQuiz);
 
