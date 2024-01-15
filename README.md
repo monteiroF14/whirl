@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-    <img alt="whirl" src="https://imgur.com/a/BAFCEKz" width="100%">
+    <img alt="whirl" src="https://i.imgur.com/RqyhIlL.png" width="100%">
 </p>
 
 ## 🚀 Technologies
