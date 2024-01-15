@@ -18,7 +18,6 @@ declare namespace NodeJS {
 
 		// jwt
 		ACCESS_TOKEN_EXPIRATION: string;
-		REFRESH_TOKEN_EXPIRATION: string;
 		JWT_SECRET: string;
 
 		// quiz questions answers

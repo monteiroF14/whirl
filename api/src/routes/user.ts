@@ -17,7 +17,7 @@ router.route("/:id/image").put(require(ROLE.APPLICATION_USER), UserController.up
 router.route("/:id/quizzes").get(require(ROLE.APPLICATION_USER), UserController.getUserQuizzes);
 
 router
-	.route("/:id/likes")
+	.route("/:id/liked")
 	.get(require(ROLE.APPLICATION_USER), UserController.getLikedQuizzes)
 	.post(require(ROLE.APPLICATION_USER), UserController.likeAQuiz)
 	.delete(require(ROLE.APPLICATION_USER), UserController.removeQuizLike);

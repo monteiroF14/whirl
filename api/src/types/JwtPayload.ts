@@ -4,5 +4,5 @@ export type JwtPayload = {
 	id: number;
 	email: string;
 	role: UserRole;
-	expiration: string;
+	expiration?: string;
 };

@@ -47,16 +47,15 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 			return res.status(500).json({ message: `Failed to create user: ${result.error}` });
 		}
 
-		const token = AuthService.createJwtToken({
+		const refreshToken = AuthService.createJwtToken({
 			id: result.value.id!,
 			email: result.value.email,
 			role: result.value.role,
-			expiration: process.env.REFRESH_TOKEN_EXPIRATION,
 		});
 
 		const refreshResult = await UserService.addRefreshTokenToUser({
 			id: result.value.id!,
-			refresh_token: token,
+			refresh_token: refreshToken,
 		});
 
 		if (refreshResult.isFailure) {
@@ -65,7 +64,7 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 				.json({ message: `Failed to add refresh token to user: ${refreshResult.error}` });
 		}
 
-		res.cookie("refreshToken", token, {
+		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
 		});
 
