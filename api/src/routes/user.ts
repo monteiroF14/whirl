@@ -14,12 +14,20 @@ router.route("/:id").get(require(ROLE.SUPER_ADMIN), UserController.getUserFromId
 
 router.route("/:id/image").put(require(ROLE.APPLICATION_USER), UserController.updateUserImage);
 
-router.route("/:id/quizzes").get(require(ROLE.APPLICATION_USER), UserController.getUserOwnQuizzes);
+router.route("/:id/quizzes").get(require(ROLE.APPLICATION_USER), UserController.getUserQuizzes);
+
+router
+	.route("/:id/liked")
+	.get(require(ROLE.APPLICATION_USER), UserController.getLikedQuizzes)
+	.post(require(ROLE.APPLICATION_USER), UserController.likeAQuiz)
+	.delete(require(ROLE.APPLICATION_USER), UserController.removeQuizLike);
+
+router.route("/:id/followers").get(require(ROLE.APPLICATION_USER), UserController.getUserFollowers);
 
 router
 	.route("/:id/following")
-	.get(require(ROLE.APPLICATION_USER), UserController.getUserFollowedQuizzes)
-	.put(require(ROLE.APPLICATION_USER), UserController.addToUserFollowedQuizzes)
-	.delete(require(ROLE.APPLICATION_USER), UserController.removeFromUserFollowedQuizzes);
+	.get(require(ROLE.APPLICATION_USER), UserController.getUserFollowing)
+	.post(require(ROLE.APPLICATION_USER), UserController.followUser)
+	.delete(require(ROLE.APPLICATION_USER), UserController.unfollowUser);
 
 export default router;

@@ -1,27 +1,27 @@
 // Quiz CRUD Operations
-export { createQuiz } from "services/quiz/crud/createQuiz";
-export { getAllQuizzes } from "services/quiz/crud/getAllQuizzes";
-export { getQuizFromId } from "services/quiz/crud/getQuizFromId";
-export { removeQuiz } from "services/quiz/crud/removeQuiz";
+export { createQuiz } from "services/quiz/crud/create-quiz";
+export { getAllQuizzes } from "services/quiz/crud/get-all-quizzes";
+export { getQuizFromId } from "services/quiz/crud/get-quiz-from-id";
+export { removeQuiz } from "services/quiz/crud/remove-quiz";
 
 // Visibility Operations
-export { getQuizVisibility } from "services/quiz/visibility/getQuizVisibility";
-export { toggleQuizVisibility } from "services/quiz/visibility/toggleQuizVisibility";
+export { getQuizVisibility } from "services/quiz/visibility/get-quiz-visibility";
+export { toggleQuizVisibility } from "services/quiz/visibility/toggle-quiz-visibility";
 
 // Views Operations
-export { getQuizViews } from "services/quiz/views/getQuizViews";
-export { incrementQuizViews } from "services/quiz/views/incrementQuizViews";
+export { getQuizViews } from "services/quiz/views/get-quiz-views";
+export { incrementQuizViews } from "services/quiz/views/increment-quiz-views";
 
 // Rating Operations
-export { getQuizRating } from "services/quiz/rating/getQuizRating";
-export { updateQuizRating } from "services/quiz/rating/updateQuizRating";
+export { getQuizRating } from "services/quiz/rating/get-quiz-rating";
+export { updateQuizRating } from "services/quiz/rating/update-quiz-rating";
 
 // Followers Operations
-export { getQuizFollowers } from "services/quiz/followers/getQuizFollowers";
+export { getQuizLikes } from "services/quiz/likes/get-quiz-likes";
 
 // Genres Operations
-export { addGenreToQuiz } from "services/quiz/genres/addGenreToQuiz";
-export { removeGenreFromQuiz } from "services/quiz/genres/removeGenreFromQuiz";
+export { addGenreToQuiz } from "services/quiz/genres/add-genre-to-quiz";
+export { removeGenreFromQuiz } from "services/quiz/genres/remove-genre-from-quiz";
 
 // Image Operations
-export { updateQuizImage } from "services/quiz/image/updateQuizImage";
+export { updateQuizImage } from "services/quiz/image/update-quiz-image";

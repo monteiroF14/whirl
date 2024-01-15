@@ -23,7 +23,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/users`
 - Method: `GET`
-- Controller Method: `UserController.getAll`
 - Description: Retrieve a list of all users.
 
 </details>
@@ -33,7 +32,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/users`
 - Method: `POST`
-- Controller Method: `UserController.create`
 - Description: Create a new user.
 
 </details>
@@ -43,7 +41,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/users/:id`
 - Method: `GET`
-- Controller Method: `UserController.getFromId`
 - Description: Retrieve a user by their ID.
 
 </details>
@@ -53,19 +50,17 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/users/:id`
 - Method: `DELETE`
-- Controller Method: `UserController.remove`
 - Description: Delete a user by their ID.
 
 </details>
 
-### User's own quizzes
+### User's quizzes
 
 <details open>
-  <summary>Get user's own quizzes</summary>
+  <summary>Get user's quizzes</summary>
 
 - Endpoint: `/users/:id/quizzes`
 - Method: `GET`
-- Controller Method: `UserController.getUserOwnQuizzes`
 - Description: Get the quizzes owned by a user by their ID.
 
 </details>
@@ -77,42 +72,77 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/users/:id/image`
 - Method: `PUT`
-- Controller Method: `UserController.updateUserImage`
 - Description: Update the image of a user by their ID.
 - Authorization: Requires the user to be authenticated.
 
 </details>
 
-### User's followed quizzes
+### User's liked quizzes
 
 <details open>
-  <summary>Get user's followed quizzes</summary>
+  <summary>Get user's liked quizzes</summary>
 
-- Endpoint: `/users/:id/following`
+- Endpoint: `/users/:id/liked`
 - Method: `GET`
-- Controller Method: `UserController.getUserFollowedQuizzes`
-- Description: Get the quizzes followed by a user by their ID.
+- Description: Get the quizzes liked by a user by their ID.
 - Authorization: Requires the user to be authenticated as a super admin.
 
 </details>
 
 <details open>
-  <summary>Add quiz to user's followed quizzes</summary>
+  <summary>Like a quiz</summary>
 
-- Endpoint: `/users/:id/following`
-- Method: `PUT`
-- Controller Method: `UserController.addToUserFollowedQuizzes`
-- Description: Add a quiz to the list of quizzes followed by a user by their ID.
+- Endpoint: `/users/:id/liked`
+- Method: `POST`
+- Description: Add a quiz to the list of quizzes liked by a user by their ID.
 
 </details>
 
 <details open>
-  <summary>Remove quiz from user's followed quizzes</summary>
+  <summary>Remove a like from a quiz</summary>
+
+- Endpoint: `/users/:id/liked`
+- Method: `DELETE`
+- Description: Remove a like from a quiz by user ID.
+
+</details>
+
+### User's follow users
+
+<details open>
+  <summary>Get user's followed users</summary>
+
+- Endpoint: `/users/:id/followed`
+- Method: `GET`
+- Description: Get the users that follow a user by his ID.
+- Authorization: Requires the user to be authenticated as a super admin.
+
+</details>
+
+<details open>
+  <summary>Get user's following users</summary>
 
 - Endpoint: `/users/:id/following`
+- Method: `GET`
+- Description: Get the users that a user follows based on the user ID.
+
+</details>
+
+<details open>
+  <summary>Follow a user</summary>
+
+- Endpoint: `/users/:id/following`
+- Method: `POST`
+- Description: Follow a user.
+
+</details>
+
+<details open>
+  <summary>Unfollow a user</summary>
+
+- Endpoint: `/users/:id/followed`
 - Method: `DELETE`
-- Controller Method: `UserController.removeFromUserFollowedQuizzes`
-- Description: Remove a quiz from the list of quizzes followed by a user by their ID.
+- Description: Unfollow a user.
 
 </details>
 
@@ -125,7 +155,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes`
 - Method: `GET`
-- Controller Method: `QuizController.getAll`
 - Description: Retrieve a list of all quizzes.
 
 </details>
@@ -135,7 +164,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes`
 - Method: `POST`
-- Controller Method: `QuizController.create`
 - Description: Create a new quiz.
 
 </details>
@@ -145,7 +173,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id`
 - Method: `GET`
-- Controller Method: `QuizController.getFromId`
 - Description: Retrieve a quiz by its ID.
 
 </details>
@@ -155,7 +182,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id`
 - Method: `DELETE`
-- Controller Method: `QuizController.remove`
 - Description: Delete a quiz by its ID.
 
 </details>
@@ -167,7 +193,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/visibility`
 - Method: `GET`
-- Controller Method: `QuizController.getQuizVisibility`
 - Description: Retrieve the visibility of a quiz by its ID.
 
 </details>
@@ -177,7 +202,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/visibility`
 - Method: `PUT`
-- Controller Method: `QuizController.toggleQuizVisibility`
 - Description: Toggle the visibility of a quiz by its ID.
 - Authorization: Requires the user to be authenticated.
 
@@ -190,7 +214,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/views`
 - Method: `GET`
-- Controller Method: `QuizController.getQuizViews`
 - Description: Retrieve the views of a quiz by its ID.
 
 </details>
@@ -200,7 +223,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/views`
 - Method: `PUT`
-- Controller Method: `QuizController.incrementQuizViews`
 - Description: Increment the views of a quiz by its ID.
 - Authorization: Requires the user to be authenticated.
 
@@ -213,7 +235,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/rating`
 - Method: `GET`
-- Controller Method: `QuizController.getQuizRating`
 - Description: Retrieve the rating of a quiz by its ID.
 
 </details>
@@ -223,21 +244,19 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/rating`
 - Method: `PUT`
-- Controller Method: `QuizController.updateQuizRating`
 - Description: Update the rating of a quiz by its ID.
 - Authorization: Requires the user to be authenticated.
 
 </details>
 
-### Followers Operations
+### Likes Operations
 
 <details open>
-  <summary>Get quiz followers</summary>
+  <summary>Get quiz likes and who liked</summary>
 
-- Endpoint: `/quizzes/:id/followers`
+- Endpoint: `/quizzes/:id/likes`
 - Method: `GET`
-- Controller Method: `QuizController.getQuizFollowers`
-- Description: Retrieve the followers of a quiz by its ID.
+- Description: Retrieve the likes and liked_by of a quiz by its ID.
 
 </details>
 
@@ -248,7 +267,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/genres`
 - Method: `POST`
-- Controller Method: `QuizController.addGenreToQuiz`
 - Description: Add a genre to a quiz by its ID.
 - Authorization: Requires the user to be authenticated.
 
@@ -259,7 +277,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/genres/:genreId`
 - Method: `DELETE`
-- Controller Method: `QuizController.removeGenreFromQuiz`
 - Description: Remove a genre from a quiz by its ID and the genre ID.
 - Authorization: Requires the user to be authenticated.
 
@@ -272,7 +289,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/quizzes/:id/image`
 - Method: `PUT`
-- Controller Method: `QuizController.updateQuizImage`
 - Description: Update the image of a quiz by its ID.
 - Authorization: Requires the user to be authenticated, and own the quiz.
 
@@ -287,7 +303,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/genres`
 - Method: `POST`
-- Controller Method: `GenreController.createGenre`
 - Description: Create a new genre for quizzes.
 
 </details>
@@ -297,7 +312,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/genres`
 - Method: `GET`
-- Controller Method: `GenreController.getAllGenres`
 - Description: Retrieve a list of all genres.
 
 </details>
@@ -307,7 +321,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/genres/:id`
 - Method: `DELETE`
-- Controller Method: `GenreController.removeGenre`
 - Description: Delete a genre by its ID.
 
 </details>
@@ -319,7 +332,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/genres/:id`
 - Method: `PUT`
-- Controller Method: `GenreController.updateGenreName`
 - Description: Update the name of a genre by its ID.
 
 </details>
@@ -331,7 +343,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/auth`
 - Method: `GET`
-- Controller Method: `AuthController.login`
 - Description: Retrieve login information.
 
 </details>
@@ -341,8 +352,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/auth/callback`
 - Method: `GET`
-- Controller Method: `AuthController.getTokens`
-- Middleware: `validateOAuthToken`
 - Description: Callback endpoint for retrieving tokens. The middleware `validateOAuthToken` is applied to validate the OAuth token before creating a new user.
 
 </details>
@@ -352,7 +361,6 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 
 - Endpoint: `/auth/new-token`
 - Method: `GET`
-- Controller Method: `AuthController.generateAccessToken`
 - Description: Generate a new access token.
 
 </details>

@@ -14,9 +14,20 @@ model User {
   role             UserRole     @default(APPLICATION_USER)
   image_url        String       @default("https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699315200&semt=sph")
   refresh_token String @default("")
-  own_quizzes      Quiz[]       @relation("UserOwnsQuizzes")
-  followed_quizzes Quiz[]       @relation("UserFollowsQuizzes")
-  user_rating      UserRating[]
+  quizzes      Quiz[]       @relation("UserQuizzes")
+  liked_quizzes Quiz[]       @relation("UserLikesQuizzes")
+  followers Follow[] @relation("UserHasFollowers")
+  following Follow[] @relation("UserFollowsUsers")
+  ratings      Ratings[]
+}
+
+model Follow {
+  followerId Int 
+  followingId Int
+  follower User @relation("UserHasFollowers", fields: [followerId], references: [id])
+  following User @relation("UserFollowsUsers", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
 }
 
 model Quiz {
@@ -31,9 +42,10 @@ model Quiz {
   rating        Float        @default(0)
   questions     Question[]   @relation("QuizOwnsQuestions")
   created_by_id Int
-  created_by    User         @relation("UserOwnsQuizzes", fields: [created_by_id], references: [id])
-  followers   User[]       @relation("UserFollowsQuizzes")
-  user_rating   UserRating[]
+  created_by    User         @relation("UserQuizzes", fields: [created_by_id], references: [id])
+  liked_by   User[]       @relation("UserLikesQuizzes")
+  likes Int
+  ratings   Ratings[]
 }
 
 model Question {
@@ -54,7 +66,7 @@ model QuizAnswer {
   questionId Int
 }
 
-model UserRating {
+model Ratings {
   id        Int      @id @default(autoincrement())
   rating    Int
   userId    Int

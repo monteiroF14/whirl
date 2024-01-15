@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
 
 import * as QuizService from "services/quiz";
-import { ToggleQuizVisibilityServicePropsSchema } from "services/quiz/visibility/toggleQuizVisibility";
+import { ToggleQuizVisibilityPropsSchema } from "services/quiz/visibility/toggle-quiz-visibility";
 
 export async function toggleQuizVisibility(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
-	const validation = ToggleQuizVisibilityServicePropsSchema.safeParse({ id: +id! });
+	const validation = ToggleQuizVisibilityPropsSchema.safeParse({ id: +id! });
 
 	if (!validation.success) {
 		res.status(400).json({
