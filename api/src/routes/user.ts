@@ -1,5 +1,4 @@
 import { Router } from "express";
-// import type { Request, Response } from "express";
 import * as UserController from "controllers/user";
 import { require } from "middleware/require";
 import { ROLE } from "config/permissions";
@@ -15,52 +14,20 @@ router.route("/:id").get(require(ROLE.SUPER_ADMIN), UserController.getUserFromId
 
 router.route("/:id/image").put(require(ROLE.APPLICATION_USER), UserController.updateUserImage);
 
-router.route("/:id/quizzes").get(require(ROLE.APPLICATION_USER), UserController.getUserOwnQuizzes);
+router.route("/:id/quizzes").get(require(ROLE.APPLICATION_USER), UserController.getUserQuizzes);
 
-// router
-// 	.route("/:id/followed")
-// 	.get(require(ROLE.APPLICATION_USER), UserController.getUserFollowedUsers);
+router
+	.route("/:id/likes")
+	.get(require(ROLE.APPLICATION_USER), UserController.getLikedQuizzes)
+	.post(require(ROLE.APPLICATION_USER), UserController.likeAQuiz)
+	.delete(require(ROLE.APPLICATION_USER), UserController.removeQuizLike);
 
-// router
-// 	.route("/:id/following")
-// 	.get(require(ROLE.APPLICATION_USER), (req: Request, res: Response) => {
-// 		if (!req.params.type || req.params.type === null) {
-// 			res.status(401);
-// 		}
+router.route("/:id/followers").get(require(ROLE.APPLICATION_USER), UserController.getUserFollowers);
 
-// 		if (!req.params.type.includes(["quiz", "user"])) {
-// 			res.status(401).json({ message: "Invalid params! Must have type quiz or user" });
-// 		}
-
-// 		return req.params.type === "quiz"
-// 			? UserController.getUserFollowedQuizzes
-// 			: UserController.getUserFollowedQuizzes;
-// 	})
-// 	.put(require(ROLE.APPLICATION_USER), (req: Request, res: Response) => {
-// 		if (!req.params.type || req.params.type === null) {
-// 			res.status(401);
-// 		}
-
-// 		if (!req.params.type.includes(["quiz", "user"])) {
-// 			res.status(401).json({ message: "Invalid params! Must have type quiz or user" });
-// 		}
-
-// 		return req.params.type === "quiz"
-// 			? UserController.addToUserFollowedQuizzes
-// 			: UserController.getUserFollowedQuizzes;
-// 	})
-// 	.delete(require(ROLE.APPLICATION_USER), (req, res) => {
-// 		if (!req.params.type || req.params.type === null) {
-// 			res.status(401);
-// 		}
-
-// 		if (!req.params.type.includes(["quiz", "user"])) {
-// 			res.status(401).json({ message: "Invalid params! Must have type quiz or user" });
-// 		}
-
-// 		return req.params.type === "quiz"
-// 			? UserController.removeFromUserFollowedQuizzes
-// 			: UserController.getUserFollowedQuizzes;
-// 	});
+router
+	.route("/:id/following")
+	.get(require(ROLE.APPLICATION_USER), UserController.getUserFollowing)
+	.post(require(ROLE.APPLICATION_USER), UserController.followUser)
+	.delete(require(ROLE.APPLICATION_USER), UserController.unfollowUser);
 
 export default router;

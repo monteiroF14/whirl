@@ -2,8 +2,13 @@ import type { NextFunction, Request, Response } from "express";
 import * as UserService from "services/user";
 import { LikeAQuizPropsSchema } from "services/user/likes/like-a-quiz";
 
-export async function addToUserFollowedQuizzes(req: Request, res: Response, next: NextFunction) {
-	const { quizId } = req.body;
+export async function likeAQuiz(req: Request, res: Response, next: NextFunction) {
+	const quizId = req.quiz?.id;
+
+	if (!quizId) {
+		res.status(401).json({ message: "missing quiz id" });
+	}
+
 	const { id: userId } = req.params;
 
 	const validation = LikeAQuizPropsSchema.safeParse({

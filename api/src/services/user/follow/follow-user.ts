@@ -2,19 +2,19 @@ import { ZodError, z } from "zod";
 import { database } from "config";
 import { Result } from "utils/response/result";
 
-export const FollowUser = z.object({
+export const FollowUserPropsSchema = z.object({
 	userId: z.number(),
 	userToFollowId: z.number(),
 });
 
-type AddToUserFollowedQuizzesServiceProps = z.infer<typeof FollowUser>;
+type AddToUserFollowedQuizzesServiceProps = z.infer<typeof FollowUserPropsSchema>;
 
 export async function followUser({
 	userId,
 	userToFollowId,
 }: AddToUserFollowedQuizzesServiceProps): Promise<Result<void>> {
 	try {
-		FollowUser.parse({ userId, userToFollowId });
+		FollowUserPropsSchema.parse({ userId, userToFollowId });
 
 		const user = await database.user.update({
 			where: {

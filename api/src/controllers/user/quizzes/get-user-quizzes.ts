@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import * as UserService from "services/user";
 import { GetUserQuizzesPropsSchema } from "services/user/quizzes/get-user-quizzes";
 
-export async function getUserOwnQuizzes(req: Request, res: Response, next: NextFunction) {
+export async function getUserQuizzes(req: Request, res: Response, next: NextFunction) {
 	const { id } = req.params;
 	const validation = GetUserQuizzesPropsSchema.safeParse({ userId: +id! });
 
