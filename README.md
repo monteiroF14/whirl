@@ -26,7 +26,7 @@ The project was made using:
 
 ## 💻 Project
 
-whirl is a mobile quiz game with the premise of allowing the user to spend leisure time creating and answering quizzes from other users, promoting interaction between players.
+being developed for a college project, whirl is a mobile quiz game with the premise of allowing the user to spend leisure time creating and answering quizzes from other users, promoting interaction between players.
 
 ## 📄 Documentation
 
