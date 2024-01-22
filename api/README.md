@@ -13,6 +13,59 @@ The API is built using Node.js and Express, and it follows RESTful conventions.
 
 The base URL for the API is `https://whirl-api.onrender.com`.
 
+## Usage
+
+You can use the provided routes to interact with the whirl API. Ensure that you follow RESTful principles and include the necessary data in your requests.
+
+Feel free to explore and integrate these endpoints into your application.
+
+### Example
+
+```bash
+curl https://whirl-api.onrender.com/quizzes -X GET
+```
+
+## Server Status
+
+<details open>
+  <summary>Check server status</summary>
+
+- Endpoint: `/`
+- Method: `GET`
+- Description: Check if the server is running.
+- Response: Returns a "server is running" message with a status code of 200.
+
+</details>
+
+## Authentication
+
+<details open>
+  <summary>Login and Token Retrieval</summary>
+
+- Endpoint: `/auth`
+- Method: `GET`
+- Description: Retrieve login information.
+
+</details>
+
+<details open>
+  <summary>Token Callback</summary>
+
+- Endpoint: `/auth/callback`
+- Method: `GET`
+- Description: Callback endpoint for retrieving tokens. The middleware `validateOAuthToken` is applied to validate the OAuth token before creating a new user.
+
+</details>
+
+<details open>
+  <summary>Generate Access Token</summary>
+
+- Endpoint: `/auth/new-token`
+- Method: `GET`
+- Description: Generate a new access token.
+
+</details>
+
 ## Users
 
 ### User CRUD operations
@@ -335,56 +388,3 @@ The base URL for the API is `https://whirl-api.onrender.com`.
 - Description: Update the name of a genre by its ID.
 
 </details>
-
-## Authentication
-
-<details open>
-  <summary>Login and Token Retrieval</summary>
-
-- Endpoint: `/auth`
-- Method: `GET`
-- Description: Retrieve login information.
-
-</details>
-
-<details open>
-  <summary>Token Callback</summary>
-
-- Endpoint: `/auth/callback`
-- Method: `GET`
-- Description: Callback endpoint for retrieving tokens. The middleware `validateOAuthToken` is applied to validate the OAuth token before creating a new user.
-
-</details>
-
-<details open>
-  <summary>Generate Access Token</summary>
-
-- Endpoint: `/auth/new-token`
-- Method: `GET`
-- Description: Generate a new access token.
-
-</details>
-
-## Server Status
-
-<details open>
-  <summary>Check server status</summary>
-
-- Endpoint: `/`
-- Method: `GET`
-- Description: Check if the server is running.
-- Response: Returns a "server is running" message with a status code of 200.
-
-</details>
-
-## Usage
-
-You can use the provided routes to interact with the whirl API. Ensure that you follow RESTful principles and include the necessary data in your requests.
-
-Feel free to explore and integrate these endpoints into your application.
-
-### Example
-
-```bash
-curl https://whirl-api.onrender.com/quizzes -X GET
-```
